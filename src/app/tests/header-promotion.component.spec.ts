@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderPromotionComponent } from './header-promotion.component';
+import { HeaderPromotionComponent } from '../components/header-promotion.component';
 
 describe('HeaderPromotionComponent', () => {
   let component: HeaderPromotionComponent;
