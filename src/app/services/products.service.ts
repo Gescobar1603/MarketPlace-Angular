@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { Api} from '../config';
 
 @Injectable({
@@ -17,4 +18,5 @@ export class ProductsService {
     return this.http.get(`${this.api}products.json`)
 
   }
+
 }
