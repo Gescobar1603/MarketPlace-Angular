@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Path } from '../config';
+
 import { ProductsService } from '../services/products.service';
 
 @Component({
@@ -10,43 +11,24 @@ import { ProductsService } from '../services/products.service';
 export class HeaderPromotionComponent implements OnInit {
 
   path: string = Path.url;
-  top_banner: Object = null;
+  top_banner:object = null;
+  preload: boolean = false;
 
   constructor( private productsService: ProductsService) { }
 
   ngOnInit(): void {
 
-    this.productsService.getData()
+    this.preload = true;
+
+    this.productsService.getDataBanner()
       .subscribe(resp => {
 
-        //console.log("resp", resp);
-
         /*============================================================
-        Tomar la longitud del objeto
+        Devolvemos a la vista un banner
         =============================================================*/
 
-        let a;
-
-        let size = 0;
-
-        for (a in resp) {
-
-            size++
-
-        }
-
-        /*============================================================
-         Generar un número aleatorio
-        =============================================================*/
-
-        let index = Math.floor(Math.random() * size);
-
-        /*============================================================
-        Devolvemos a la vista un banner aleatorio
-        =============================================================*/
-
-        this.top_banner = JSON.parse(resp[Object.keys(resp)[index]].top_banner);
-
+        this.top_banner = JSON.parse(resp[Object.keys(resp)[0]].top_banner);
+        this.preload = false;
     })
 
   }

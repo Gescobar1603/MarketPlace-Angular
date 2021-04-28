@@ -7,16 +7,14 @@ import { Api} from '../config';
   providedIn: 'root'
 })
 
-export class ProductsService {
+export class CategoriasService {
 
-  private api:string = Api.url;
+  private api: string = Api.url;
 
   constructor(private http: HttpClient) { }
 
-  getDataBanner() {
+  getDataCategoria() {
 
-    return this.http.get(`${this.api}banner.json`)
-
+    return this.http.get(`${this.api}categorias.json`)
   }
-
 }

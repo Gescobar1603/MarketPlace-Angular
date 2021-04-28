@@ -2,30 +2,43 @@
 Header Promotion
 ======================================-->
 
-<div class="ps-block--promotion-header bg--cover"  style="background: url({{path}}img/banner/top/{{top_banner['IMG tag']}});">
+<div
+  *ngIf ="!preload && top_banner != null"
 
-    <div class="container">
+  class="ps-block--promotion-header bg--cover"  style="background: url({{path}}img/banner/top/{{top_banner['IMG']}});">
 
-        <div class="ps-block__left">
+      <div class="container">
 
-            <h3>{{top_banner['porcentaje']}}</h3>
+          <div class="ps-block__left">
 
-            <figure>
+              <h3>{{top_banner['Porcentaje']}}</h3>
 
-                  <p>{{top_banner['descuento']}}</p>
+              <figure>
 
-                <h4 class="naranja">{{top_banner['H4 tag']}}</h4>
+                    <p>{{top_banner['Descuento']}}</p>
 
-            </figure>
+                  <h4 class="naranja">{{top_banner['Rubro']}}</h4>
 
-        </div>
+              </figure>
 
-        <div class="ps-block__center">
+          </div>
 
-            <p>{{top_banner['P2 tag']}}<span>{{top_banner['Span tag']}}</span></p>
+          <div class="ps-block__center">
 
-        </div><a class="ps-btn ps-btn--sm" href="#">{{top_banner['Button tag']}}</a>
+              <p>{{top_banner['Promocion']}}<span>{{top_banner['Fecha']}}</span></p>
 
-    </div>
+          </div><a class="ps-btn ps-btn--sm" href="#">{{top_banner['Boton']}}</a>
+
+      </div>
+
+</div>
+
+<!--=====================================
+Header Promotion
+======================================-->
+<div *ngIf = "preload && top_banner == null"
+      class ="d-flex justify-content-center">
+
+  <div class="spinner-border text-warning my-3"></div>
 
 </div>
