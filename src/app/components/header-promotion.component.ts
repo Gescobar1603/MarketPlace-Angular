@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Path } from '../config';
+import { ProductsService } from '../services/products.service';
 
 @Component({
   selector: 'app-header-promotion',
@@ -10,9 +11,17 @@ export class HeaderPromotionComponent implements OnInit {
 
   path:String = Path.url;
 
-  constructor() { }
+  constructor( private productsService: ProductsService) { }
 
   ngOnInit(): void {
+
+    this.productsService.getData()
+      .subscribe(resp => {
+
+        console.log("resp", resp);
+
+    })
+
   }
 
 }
