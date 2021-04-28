@@ -16150,12 +16150,6 @@ textarea.form-control {
     }
 }
 
-@media (max-width: 1199px) {
-    .header--mobile .ps-search--mobile {
-        display: none;
-    }
-}
-
 @media (max-width: 991px) {
     .header--mobile .header__top .header__left {
         display: none;
@@ -16164,11 +16158,17 @@ textarea.form-control {
         max-width: 100%;
         text-align: center;
     }
+    .header--mobile .ps-search--mobile {
+        display: block;
+    }
 }
 
 @media (max-width: 767px) {
     .header--mobile .navigation__extra li>a {
         display: none;
+    }
+    .header--mobile .ps-search--mobile {
+        display: block;
     }
 }
 
@@ -16601,7 +16601,6 @@ textarea.form-control {
 }
 
 .ps-search--mobile {
-    max-width: 450px;
     margin: 0 auto;
     padding: 10px 20px;
 }
