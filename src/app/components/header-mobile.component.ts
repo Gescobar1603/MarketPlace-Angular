@@ -8,7 +8,7 @@ import { Path } from '../config';
 })
 export class HeaderMobileComponent implements OnInit {
 
-  path:String = Path.url;
+  path:string = Path.url;
 
   constructor() { }
 

@@ -8,8 +8,8 @@ import { Path } from '../config';
 })
 export class FooterComponent implements OnInit {
 
-  path: String = Path.url;
-  
+  path:string = Path.url;
+
   constructor() { }
 
   ngOnInit(): void {

@@ -8,10 +8,10 @@ import { Path } from '../config';
 })
 export class HeaderComponent implements OnInit {
 
-    path:String = Path.url;
-    
+    path:string = Path.url;
+
     constructor() { }
-    
+
     ngOnInit(): void {
     }
 
