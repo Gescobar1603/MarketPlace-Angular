@@ -25,10 +25,10 @@ export class HeaderPromotionComponent implements OnInit {
         Tomar la longitud del objeto
         =============================================================*/
 
-        let i;
+        let a;
         let size = 0;
 
-        for (i in resp) {
+        for (a in resp) {
 
             size++
 
