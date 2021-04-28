@@ -45,7 +45,7 @@ export class HeaderPromotionComponent implements OnInit {
         Devolvemos a la vista un banner aleatorio
         =============================================================*/
 
-        this.top_banner = JSON.parse(resp[Object.keys(resp)[index]].top_banner);
+        this.top_banner = JSON.parse(resp[Object.keys(resp)[1]].top_banner);
 
     })
 
