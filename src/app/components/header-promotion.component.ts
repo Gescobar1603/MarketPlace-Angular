@@ -26,6 +26,7 @@ export class HeaderPromotionComponent implements OnInit {
         =============================================================*/
 
         let a;
+
         let size = 0;
 
         for (a in resp) {
