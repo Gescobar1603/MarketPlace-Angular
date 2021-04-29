@@ -38,9 +38,11 @@ export class HeaderComponent implements OnInit {
         let i;
 
         for (i in resp) {
+
           /*============================================================
           Separanmos la lista de subittulos en indices de un array
           =============================================================*/
+
           this.subitulosarray.push(JSON.parse(resp[i].tag));
         }
 
