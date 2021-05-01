@@ -97,8 +97,7 @@ export class HeaderMobileComponent implements OnInit {
                 
                 "categoria": resp[i].categoria,
                 "subcategoria": resp[i].nombre,
-                "url": resp[i].url
-
+                "url":resp[i].nombre.replace(/\s+/g, '')
               })
             }
           /*============================================================
@@ -112,7 +111,7 @@ export class HeaderMobileComponent implements OnInit {
                 $(`[categoria='${categoria}']`).append(
                     
                   `<li class="current-menu-item ">
-                      <a href="products/${subcategoriasArray[i].url}">${subcategoriasArray[i].subcategoria}</a>
+                      <a href="products/${subcategoriasArray[i].subcategoria}">${subcategoriasArray[i].subcategoria}</a>
                   </li>`
                 
                 )

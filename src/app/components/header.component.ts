@@ -106,7 +106,7 @@ export class HeaderComponent implements OnInit {
 
                     "tag": arraySubcategorias[f][g].tag,
                     "subcategoria": arraySubcategorias[f][g].nombre,
-                    "url": arraySubcategorias[f][g].url
+                    "url": arraySubcategorias[f][g].nombre.replace(/\s+/g, '')
 
                   })
 

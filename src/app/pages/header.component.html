@@ -83,7 +83,7 @@ Header
                     <div class="menu__content">
                         <ul class="menu--dropdown">
                             <li *ngFor="let categoria of categorias; let i = index; let ultimoIndex = last" class="menu-item-has-children has-mega-menu">
-                                <a routerLink="products/{{categoria.url}}">
+                                <a routerLink="products/{{categoria.nombre}}">
                                     <i class="{{categoria.icono}}"></i>{{categoria.nombre}}
                                 </a>
                                 <div class="mega-menu">
