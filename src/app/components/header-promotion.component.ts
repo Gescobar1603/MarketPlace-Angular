@@ -11,7 +11,8 @@ import { ProductsService } from '../services/products.service';
 export class HeaderPromotionComponent implements OnInit {
 
   path: string = Path.url;
-  top_banner:object = null;
+  top_banner: object = null;
+  categoria: object = null;
   preload: boolean = false;
 
   constructor( private productsService: ProductsService) { }

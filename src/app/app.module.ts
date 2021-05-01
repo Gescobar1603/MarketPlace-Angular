@@ -10,6 +10,9 @@ import { FooterComponent } from './components/footer.component';
 import { HeaderPromotionComponent } from './components/header-promotion.component';
 import { HeaderMobileComponent } from './components/header-mobile.component';
 import { NewletterComponent } from './components/newletter.component';
+import { HomeComponent } from './components/home.component';
+import { ProductsComponent } from './components/products.component';
+import { ProductComponent } from './components/product.component'; 
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { NewletterComponent } from './components/newletter.component';
     FooterComponent,
     HeaderPromotionComponent,
     HeaderMobileComponent,
-    NewletterComponent
+    NewletterComponent,
+    HomeComponent,
+    ProductsComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

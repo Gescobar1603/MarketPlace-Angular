@@ -27,27 +27,26 @@ export class HeaderComponent implements OnInit {
     Tomamos la data de las categorias
     =============================================================*/
 
-    this.categoriasService.getDataCategoria()
-      .subscribe(resp => {
+    this.categoriasService.getDataCategoria().subscribe(resp => {
 
         this.categorias = resp;
 
-    /*============================================================
+    /*===================================================================
     Recorremos la coleccion de categorias para tomar la lista de titulos
-    =============================================================*/
-        let i;
-
-        for (i in resp) {
-
+    =====================================================================*/
+      
+      let i;
+      
+      for (i in resp) {
+          
           /*============================================================
           Separanmos la lista de subittulos en indices de un array
           =============================================================*/
 
-          this.subitulosarray.push(JSON.parse(resp[i].tag));
-        }
-
+        this.subitulosarray.push(JSON.parse(resp[i].tag));
+        
+      }
     })
-
   }
 
   /*============================================================
@@ -59,6 +58,7 @@ export class HeaderComponent implements OnInit {
     if (this.renderizado) {
 
       this.renderizado = false;
+
       let arraySubcategorias = [];
 
       /*============================================================
@@ -77,46 +77,49 @@ export class HeaderComponent implements OnInit {
              Tomamos la coleccion de las sub-categoriasfiltrando con la lista de titulos
             ===========================================================================*/
 
-          this.subCategoriasService.getFilterDataSubCategoria("tag", tag[i])
-            .subscribe(resp => {
+          this.subCategoriasService.getFilterDataSubCategoria("tag", tag[i]).subscribe(resp => {
 
-              arraySubcategorias.push(resp);
+            arraySubcategorias.push(resp);
 
               /*============================================================
-               Hacemos un recorrido por la coleccion general de subcategorias
+                Hacemos un recorrido por la coleccion general de subcategorias
+              =============================================================*/
+          
+            let f;
+            
+            let g;
+            
+            let arraytituloNombre = [];
+            
+            for (f in arraySubcategorias) {
+
+              /*============================================================
+                Hacemos un recorrido por la coleccion particular de subcategorias
               =============================================================*/
 
-              let f;
-              let g;
-              let  arraytituloNombre= [];
-              for (f in arraySubcategorias) {
-
+              for (g in arraySubcategorias[f]) {
+                  
                 /*============================================================
-                 Hacemos un recorrido por la coleccion particular de subcategorias
-                =============================================================*/
-
-                for (g in arraySubcategorias[f]) {
-
-                /*============================================================
-                Creamos un nuevo array de objetos clasificando cada subcategoria 
-                con la respectiva lista de titulo a la que pertenece
+                Creamos un nuevo array de objetos clasificando cada subcategoria con la respectiva lista de titulo a la que pertenece
                 =============================================================*/
 
                   arraytituloNombre.push({
 
                     "tag": arraySubcategorias[f][g].tag,
+
                     "subcategoria": arraySubcategorias[f][g].nombre,
+
                     "url": arraySubcategorias[f][g].nombre.replace(/\s+/g, '')
 
                   })
 
-                }
-
               }
 
-              /*============================================================
+            }
+
+              /*================================================================================
               Recorremos el array de objetos para buscar coincidencias con las listas de titulos
-              =============================================================*/
+              ==================================================================================*/
 
               for (f in arraytituloNombre) {
 
@@ -132,9 +135,9 @@ export class HeaderComponent implements OnInit {
                         <a href="products/${arraytituloNombre[f].url}">${arraytituloNombre[f].subcategoria}</a>
                       <li>`
 
-                    )
+                  )
 
-                  }
+                }
 
               }
 

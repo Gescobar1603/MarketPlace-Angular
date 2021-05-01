@@ -47,9 +47,10 @@ export class FooterComponent implements OnInit {
 
   }
 
-  /*============================================================
+  /*============================================================ 
     Activamos el efecto toogle en el listado de subactegorias
   =============================================================*/
+  
   callback() {
       
     if (this.renderizado) {
@@ -81,7 +82,7 @@ export class FooterComponent implements OnInit {
                 
                 "categoria": resp[i].categoria,
                 "subcategoria": resp[i].nombre,
-                "url": resp[i].url
+                "url": resp[i].nombre.replace(/\s+/g, '')
 
               })
             }
