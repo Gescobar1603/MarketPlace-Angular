@@ -64,16 +64,14 @@ export class FooterComponent implements OnInit {
       this.listaCategorias.forEach(categoria => {
 
         /*============================================================
-          Tomamos la coleccion de las subcategorias filtrando con los nombres
-          de categoria
+          Tomamos la coleccion de las subcategorias filtrando con los nombres de categoria
         =============================================================*/
         
         this.subCategoriasService.getFilterDataSubCategoria("categoria", categoria)
           .subscribe(resp => {
             
           /*============================================================
-            Hacemos un recorrido por la coleccion general de subcategorias y clasificamos las subcategorias y url
-            deacuerdo a la categoria que corresponda
+            Hacemos un recorrido por la coleccion general de subcategorias y clasificamos las subcategorias y url deacuerdo a la categoria que corresponda
           =============================================================*/
             let i= null;
 
