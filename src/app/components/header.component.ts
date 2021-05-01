@@ -98,13 +98,15 @@ export class HeaderComponent implements OnInit {
                 for (g in arraySubcategorias[f]) {
 
                 /*============================================================
-                Creamos un nuevo array de objetos clasificando cada subcategoria con la respectiva lista de titulo a la que pertenece
+                Creamos un nuevo array de objetos clasificando cada subcategoria 
+                con la respectiva lista de titulo a la que pertenece
                 =============================================================*/
 
                   arraytituloNombre.push({
 
                     "tag": arraySubcategorias[f][g].tag,
-                    "subcategoria": arraySubcategorias[f][g].nombre
+                    "subcategoria": arraySubcategorias[f][g].nombre,
+                    "url": arraySubcategorias[f][g].url
 
                   })
 
@@ -127,7 +129,7 @@ export class HeaderComponent implements OnInit {
                   $(`[tag='${tag[i]}']`).append(
 
                     `<li>
-                        <a href="">${arraytituloNombre[f].subcategoria}</a>
+                        <a href="products/${arraytituloNombre[f].url}">${arraytituloNombre[f].subcategoria}</a>
                       <li>`
 
                     )

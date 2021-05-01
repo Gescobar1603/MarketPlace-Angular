@@ -1,210 +1,138 @@
 <!--=====================================
 Header
 ======================================-->
-
 <header class="header header--standard header--market-place-4" data-sticky="true">
-
     <!--=====================================
     Header TOP
     ======================================-->
-
     <div class="header__top">
-
         <div class="container">
-
             <!--=====================================
             Social
             ======================================-->
-
             <div class="header__left">
-
                 <ul class="d-flex justify-content-center">
-
-                    <li><a href="#" target="_blank">
-
-                      <i class="fab fa-facebook-f mr-4"></i></a></li>
-
-                    <li><a href="#" target="_blank">
-
-                      <i class="fab fa-instagram mr-4"></i></a></li>
-
-                    <li><a href="#" target="_blank">
-
-                      <i class="fab fa-twitter mr-4"></i></a></li>
-
-                    <li><a href="#" target="_blank">
-
-                      <i class="fab fa-youtube mr-4"></i></a></li>
-
+                    <li>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-facebook-f mr-4"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-instagram mr-4"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-twitter mr-4"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-youtube mr-4"></i></a>
+                    </li>
                 </ul>
-
             </div>
-
             <!--=====================================
             Contact & lenguage
             ======================================-->
-
             <div class="header__right">
-
                 <ul class="header__top-links">
-
-                    <li><a href="#">Vende En Lexar Tec</a></li>
-
-                    <li><a href="#">Tiendas</a></li>
-
-                    <li><i class="icon-telephone"></i> Llámanos:<strong> +51 968747296</strong></li>
-
                     <li>
-
-                        <div class="ps-dropdown language"><a href="#"><img src="{{path}}img/template/es.png" alt="">Spanish</a>
-
-                            <ul class="ps-dropdown-menu">
-
-                                <li><a href="#"><img src="{{path}}img/template/en.png" alt=""> English</a></li>
-
-                            </ul>
-
-                        </div>
-
+                        <a href="#">Vende En Lexar Tec</a>
                     </li>
-
+                    <li>
+                        <a href="#">Tiendas</a>
+                    </li>
+                    <li>
+                        <i class="icon-telephone"></i> Llámanos:<strong> +51 968747296</strong></li>
+                    <li>
+                        <div class="ps-dropdown language">
+                            <a href="#"><img src="{{path}}img/template/es.png" alt="">Spanish</a>
+                            <ul class="ps-dropdown-menu">
+                                <li>
+                                    <a href="#"><img src="{{path}}img/template/en.png" alt=""> English</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
-
             </div>
-
-        </div><!-- End Container -->
-
-    </div><!-- Header Top -->
-
+        </div>
+        <!-- End Container -->
+    </div>
+    <!-- Header Top -->
     <!--=====================================
     Header Content
     ======================================-->
-
     <div class="header__content">
-
         <div class="container">
-
             <div class="header__content-left">
-
                 <!--=====================================
                 Logo
                 ======================================-->
-
                 <a class="ps-logo" href="index.html">
-
                     <img src="{{path}}img/template/logo.png" alt="">
-
                 </a>
-
                 <!--=====================================
                 Menú
                 ======================================-->
-
                 <div class="menu--product-categories">
-
                     <div class="menu__toggle">
-
                         <i class="icon-menu"></i>
-
                         <span> Shop by Department</span>
-
                     </div>
-
                     <div class="menu__content">
-
                         <ul class="menu--dropdown">
-
-                            <li
-                            *ngFor="let categoria of categorias; let i = index; let ultimoIndex = last"
-
-                            class="menu-item-has-children has-mega-menu">
-
+                            <li *ngFor="let categoria of categorias; let i = index; let ultimoIndex = last" class="menu-item-has-children has-mega-menu">
                                 <a routerLink="products/{{categoria.url}}">
-
-                                  <i class="{{categoria.icono}}"></i>{{categoria.nombre}}
+                                    <i class="{{categoria.icono}}"></i>{{categoria.nombre}}
                                 </a>
-
                                 <div class="mega-menu">
-
-                                    <div
-                                    *ngFor="let subtitulo of subitulosarray[i]"
-                                    class="mega-menu__column">
-
+                                    <div *ngFor="let subtitulo of subitulosarray[i]" class="mega-menu__column">
                                         <h4>{{subtitulo}}<span class="sub-toggle"></span></h4>
-
                                         <ul class="mega-menu__list" [attr.tag]="subtitulo">
-
                                         </ul>
                                     </div>
                                 </div>
-
-                              {{ ultimoIndex ? callback() : ""}}
-
+                                {{ ultimoIndex ? callback() : ""}}
                             </li>
                         </ul>
                     </div>
-                </div><!-- End menu-->
-            </div><!-- End Header Content Left-->
-
+                </div>
+                <!-- End menu-->
+            </div>
+            <!-- End Header Content Left-->
             <!--=====================================
             Search
             ======================================-->
-
             <div class="header__content-center">
-
                 <form class="ps-form--quick-search" action="index.html" method="get">
-
                     <div class="form-group--icon">
-
                         <i class="icon-chevron-down"></i>
-
                         <select class="form-control">
-
                             <option value="1">Todo</option>
-
                             <option value="1">Smartphone</option>
-
-                            <option value="1">Audio</option>
-
-                            <option value="1">Juguetes Tecnológicos</option>
-
+                            <option value="1">Computo</option>
+                            <option value="1">Hardware</option>
                         </select>
-
                     </div>
-
                     <input class="form-control" type="text" placeholder="¿Que estas buscando?...">
-
                     <button>Buscar</button>
-
                 </form>
-
             </div>
-
-
             <div class="header__content-right">
-
                 <div class="header__actions">
-
                     <!--=====================================
                     Wishlist
                     ======================================-->
-
                     <a class="header__extra" href="#">
-
                         <i class="icon-heart"></i><span><i>0</i></span>
-
                     </a>
-
                     <!--=====================================
                     Cart
                     ======================================-->
-
                     <div class="ps-cart--mini">
-
                         <a class="header__extra" href="#">
-
                             <i class="icon-bag2"></i><span><i>0</i></span>
-
                         </a>
 
                         <div class="ps-cart__content">
@@ -279,12 +207,16 @@ Header
                         </div>
                     </div>
 
-                </div><!-- End Header Actions-->
+                </div>
+                <!-- End Header Actions-->
 
-            </div><!-- End Header Content Right-->
+            </div>
+            <!-- End Header Content Right-->
 
-        </div><!-- End Container-->
+        </div>
+        <!-- End Container-->
 
-    </div><!-- End Header Content-->
+    </div>
+    <!-- End Header Content-->
 
 </header>
