@@ -15917,7 +15917,7 @@ textarea.form-control {
 
 .header--standard .ps-form--quick-search .form-group--icon {
     border: 1px solid #e1e1e1;
-    min-width: 80px;
+    min-width: 100px;
     border-radius: 4px 0 0 4px;
 }
 

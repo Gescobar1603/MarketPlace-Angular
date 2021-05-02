@@ -12,7 +12,9 @@ import { HeaderMobileComponent } from './components/header-mobile.component';
 import { NewletterComponent } from './components/newletter.component';
 import { HomeComponent } from './components/home.component';
 import { ProductsComponent } from './components/products.component';
-import { ProductComponent } from './components/product.component'; 
+import { ProductComponent } from './components/product.component';
+import { BuscadorComponent } from './components/buscador.component';
+import { Error404Component } from './components/error404.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ProductComponent } from './components/product.component';
     NewletterComponent,
     HomeComponent,
     ProductsComponent,
-    ProductComponent
+    ProductComponent,
+    BuscadorComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,

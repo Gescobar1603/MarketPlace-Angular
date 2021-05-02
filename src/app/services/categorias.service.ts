@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Api } from '../config';
 
-import {ApiMockUp} from '../config'
+import {ApiLexarTec} from '../config'
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import {ApiMockUp} from '../config'
 export class CategoriasService {
 
   private api: string = Api.url;
-  private api2: string = ApiMockUp.url;
+  private api2: string = ApiLexarTec.url;
 
   constructor(private http: HttpClient) { }
 
