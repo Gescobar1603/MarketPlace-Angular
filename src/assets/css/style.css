@@ -7960,7 +7960,7 @@ textarea.form-control {
 
 .ps-carousel--nav-inside .owl-nav>* {
     position: relative;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: #fcb800;
     width: 40px;
     height: 40px;
     -webkit-transform: translateY(-50%);
@@ -8080,6 +8080,10 @@ textarea.form-control {
 
 .masonry-wrapper {
     margin: 0;
+}
+
+.banner-white {
+    color: white;
 }
 
 .masonry-wrapper .grid-item,

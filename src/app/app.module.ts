@@ -15,6 +15,7 @@ import { ProductsComponent } from './components/products.component';
 import { ProductComponent } from './components/product.component';
 import { BuscadorComponent } from './components/buscador.component';
 import { Error404Component } from './components/error404.component';
+import { HomeBannerComponent } from './components/home-banner.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { Error404Component } from './components/error404.component';
     ProductsComponent,
     ProductComponent,
     BuscadorComponent,
-    Error404Component
+    Error404Component,
+    HomeBannerComponent
   ],
   imports: [
     BrowserModule,
