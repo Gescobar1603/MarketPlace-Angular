@@ -14,9 +14,10 @@ EXPORTAMOS LA RUTA PARA TOMAR IMAGENES
 
 export let Api = {
 
-    url: 'https://marketplace-02-default-rtdb.firebaseio.com/' 
+    url: 'https://marketplace-02-default-rtdb.firebaseio.com/'
 
 }
+
 export let ApiLexarTec = {
 
     url: 'http://localhost:8080/lexartec/reporteinventario/' //localhost:8080

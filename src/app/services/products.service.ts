@@ -19,4 +19,16 @@ export class ProductsService {
 
   }
 
+  getDataSlider() {
+
+    return this.http.get(`${this.api}slider.json`)
+
+  }
+
+  getLimitData(startAt: string, limitToFirst: number) {
+
+    return this.http.get(`${this.api}slider.json?orderBy="$key"&startAt="${startAt}"&limitToFirst=${limitToFirst}&print=pretty`);
+    
+  }
+
 }
