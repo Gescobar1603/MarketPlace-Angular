@@ -16,6 +16,8 @@ import { ProductComponent } from './components/product.component';
 import { BuscadorComponent } from './components/buscador.component';
 import { Error404Component } from './components/error404.component';
 import { HomeBannerComponent } from './components/home-banner.component';
+import { HomeFeaturesComponent } from './components/home-features.component';
+import { HomePromotionComponent } from './components/home-promotion.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { HomeBannerComponent } from './components/home-banner.component';
     ProductComponent,
     BuscadorComponent,
     Error404Component,
-    HomeBannerComponent
+    HomeBannerComponent,
+    HomeFeaturesComponent,
+    HomePromotionComponent
   ],
   imports: [
     BrowserModule,
