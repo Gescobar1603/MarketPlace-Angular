@@ -19,6 +19,12 @@ export class ProductsService {
 
   }
 
+  getDataBannerDefault() {
+
+    return this.http.get(`${this.api}banner-promotion.json`)
+
+  }
+
   getDataSlider() {
 
     return this.http.get(`${this.api}slider.json`)
@@ -28,6 +34,12 @@ export class ProductsService {
   getLimitData(startAt: string, limitToFirst: number) {
 
     return this.http.get(`${this.api}slider.json?orderBy="$key"&startAt="${startAt}"&limitToFirst=${limitToFirst}&print=pretty`);
+    
+  }
+
+  getLimitData2(startAt: string, limitToFirst: number) {
+
+    return this.http.get(`${this.api}banner-promotion.json?orderBy="$key"&startAt="${startAt}"&limitToFirst=${limitToFirst}&print=pretty`);
     
   }
 

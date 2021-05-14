@@ -19,6 +19,7 @@ export class CategoriasService {
   getDataCategoria() {
 
     return this.http.get(`${this.api}categorias.json`)
+
   }
 
 

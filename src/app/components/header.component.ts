@@ -71,7 +71,7 @@ export class HeaderComponent implements OnInit {
          Separar individualmente los titulos
         =============================================================*/
 
-        for (let i = 0; i < tag.length; i++) {
+        for(let i = 0; i < tag.length; i++) {
 
             /*==========================================================================
              Tomamos la coleccion de las sub-categoriasfiltrando con la lista de titulos
@@ -85,9 +85,9 @@ export class HeaderComponent implements OnInit {
                 Hacemos un recorrido por la coleccion general de subcategorias
               =============================================================*/
           
-            let f;
+            let f: string | number;
             
-            let g;
+            let g: string | number;
             
             let arraytituloNombre = [];
             
