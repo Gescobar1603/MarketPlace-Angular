@@ -15,9 +15,11 @@ import { ProductsComponent } from './components/products.component';
 import { ProductComponent } from './components/product.component';
 import { BuscadorComponent } from './components/buscador.component';
 import { Error404Component } from './components/error404.component';
+
 import { HomeBannerComponent } from './components/home-banner.component';
 import { HomeFeaturesComponent } from './components/home-features.component';
 import { HomePromotionComponent } from './components/home-promotion.component';
+import { HomeHotTodayComponent } from './components/home-hot-today.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { HomePromotionComponent } from './components/home-promotion.component';
     Error404Component,
     HomeBannerComponent,
     HomeFeaturesComponent,
-    HomePromotionComponent
+    HomePromotionComponent,
+    HomeHotTodayComponent
   ],
   imports: [
     BrowserModule,

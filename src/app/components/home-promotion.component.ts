@@ -28,7 +28,6 @@ export class HomePromotionComponent implements OnInit {
 
         this.productsService.getLimitData2(Object.keys(resp)[index], 5)
           .subscribe(resp => {
-            console.log(resp)
 
             let i;
 

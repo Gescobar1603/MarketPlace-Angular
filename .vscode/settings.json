@@ -2,4 +2,5 @@
 "css.validate": false,
 "less.validate": false,
 "scss.validate": false,
+"compile-hero.disable-compile-files-on-did-save-code": false,
 }

@@ -8,6 +8,8 @@ import { BuscadorComponent } from './components/buscador.component';
 import { Error404Component } from './components/error404.component';
 
 
+
+
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'productos', component: ProductsComponent},

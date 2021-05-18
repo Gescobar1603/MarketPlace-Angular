@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Path } from '../config';
-import { OwlCaroulselConfig, BackgroundImage } from '../funciones';
+import { OwlCarouselConfig, BackgroundImage } from '../funciones';
 
 import { ProductsService } from '../services/products.service';
 
@@ -75,7 +75,7 @@ export class HomeBannerComponent implements OnInit {
 
         this.renderizado = false;
   
-      OwlCaroulselConfig.fnc()
+      OwlCarouselConfig.fnc()
       BackgroundImage.fnc();
 
     }
