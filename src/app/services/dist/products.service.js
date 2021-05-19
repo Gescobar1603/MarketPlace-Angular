@@ -32,6 +32,12 @@ var ProductsService = /** @class */ (function () {
     ProductsService.prototype.getLimitData2 = function (startAt, limitToFirst) {
         return this.http.get(this.api + "banner-promotion.json?orderBy=\"$key\"&startAt=\"" + startAt + "\"&limitToFirst=" + limitToFirst + "&print=pretty");
     };
+    ProductsService.prototype.getFilterData = function (orderBy, equalTo) {
+        return this.http.get(this.api + "products.json?orderBy=\"" + orderBy + "\"&equalTo=\"" + equalTo + "\"&print=pretty");
+    };
+    ProductsService.prototype.getFilterDataWithLimit = function (orderBy, equalTo, limitToFirst) {
+        return this.http.get(this.api + "products.json?orderBy=\"" + orderBy + "\"&equalTo=\"" + equalTo + "\"&limitToFirst=" + limitToFirst + "&print=pretty");
+    };
     ProductsService = __decorate([
         core_1.Injectable({
             providedIn: 'root'

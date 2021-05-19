@@ -121,21 +121,21 @@ export let SlickConfig = {
                 asNavFor: '.ps-product__variants',
                 fade: true,
                 dots: false,
-                infinite: false,
+                infinite: true,
                 arrows: primary.data('arrow'),
                 prevArrow: "<a href='#'><i class='fa fa-angle-left'></i></a>",
                 nextArrow: "<a href='#'><i class='fa fa-angle-right'></i></a>",
             });
             second.slick({
                 slidesToShow: second.data('item'),
-                slidesToScroll: 1,
+                slidesToScroll: 4,
                 infinite: true,
                 arrows: second.data('arrow'),
                 focusOnSelect: true,
                 prevArrow: "<a href='#'><i class='fa fa-angle-up'></i></a>",
                 nextArrow: "<a href='#'><i class='fa fa-angle-down'></i></a>",
                 asNavFor: '.ps-product__gallery',
-                vertical: vertical,
+
                 responsive: [{
                         breakpoint: 1200,
                         settings: {
@@ -184,21 +184,21 @@ export let ProductLightbox = {
             $('.ps-product__gallery').lightGallery({
                 selector: '.item a',
                 thumbnail: true,
-                share: false,
-                fullScreen: false,
-                autoplay: false,
-                autoplayControls: false,
-                actualSize: false
+                share: true,
+                fullScreen: true,
+                autoplay: true,
+                autoplayControls: true,
+                actualSize: true
             });
             if (product.hasClass('ps-product--sticky')) {
                 $('.ps-product__thumbnail').lightGallery({
                     selector: '.item a',
                     thumbnail: true,
-                    share: false,
-                    fullScreen: false,
-                    autoplay: false,
-                    autoplayControls: false,
-                    actualSize: false
+                    share: true,
+                    fullScreen: true,
+                    autoplay: true,
+                    autoplayControls: true,
+                    actualSize: true
                 });
             }
         }

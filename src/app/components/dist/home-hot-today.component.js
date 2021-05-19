@@ -67,6 +67,18 @@ var HomeHotTodayComponent = /** @class */ (function () {
             var galleryMix_1 = $(".galleryMix_1");
             var galleryMix_2 = $(".galleryMix_2");
             var galleryMix_3 = $(".galleryMix_3");
+            /*============================================================
+            Seleccionar del Dom los elementos de las ofertas
+            =============================================================*/
+            var oferta_1 = $(".oferta_1");
+            var oferta_2 = $(".oferta_2");
+            var oferta_3 = $(".oferta_3");
+            /*============================================================
+            Seleccionar del Dom los elementos de las reseñas
+            =============================================================*/
+            var review_1 = $(".review_1");
+            var review_2 = $(".review_2");
+            var review_3 = $(".review_3");
             for (var i = 0; i < galleryMix_1.length; i++) {
                 /*============================================================
                 Recorremos la galeria de fotografias de cada producto
@@ -79,13 +91,72 @@ var HomeHotTodayComponent = /** @class */ (function () {
                     /*============================================================
                       Agregar imágenes pequeñas
                     =============================================================*/
-                    $(galleryMix_3[i]).append("<div class=\"item \">\n                <img src=\"assets/img/products/" + ($(galleryMix_1[i]).attr("category")) + "/deal-hot/" + JSON.parse($(galleryMix_1[i]).attr("gallery"))[f] + "\">\n            </div>");
+                    $(galleryMix_3[i]).append("<div class=\"item\">\n                <img src=\"assets/img/products/" + ($(galleryMix_1[i]).attr("category")) + "/deal-hot/" + JSON.parse($(galleryMix_1[i]).attr("gallery"))[f] + "\">\n            </div>");
+                }
+                /*============================================================
+                Capturamos el array de ofertas de cada producto
+                =============================================================*/
+                var oferta = JSON.parse($(oferta_1[i]).attr("oferta"));
+                /*=============================================
+                      Capturamos el precio de cada producto
+                      =============================================*/
+                var precio = Number($(oferta_1[i]).attr("precio"));
+                /*=============================================
+                Preguntamos si es descuento
+                =============================================*/
+                if (oferta[0] == "Descuento") {
+                    $(oferta_1[i]).html("<span>Ahorra <br> $" + (precio * oferta[1] / 100).toFixed(2) + " </span>");
+                    $(oferta_2[i]).html("$" + (precio - (precio * oferta[1] / 100)).toFixed(2));
+                }
+                /*=============================================
+                Preguntamos si es precio fijo
+                =============================================*/
+                if (oferta[0] == "Fijo") {
+                    $(oferta_1[i]).html("<span>Save <br> $" + (precio - oferta[1]).toFixed(2) + "</span>");
+                    $(oferta_2[i]).html("$" + oferta[1]);
+                }
+                /*=============================================
+                      Agregamos la fecha al descontador
+                      =============================================*/
+                $(oferta_3[i]).attr("data-time", new Date(parseInt(oferta[2].split("-")[0]), parseInt(oferta[2].split("-")[1]) - 1, parseInt(oferta[2].split("-")[2])));
+                /*=============================================
+                Calculamos el total de las calificaciones de las reseñas
+                =============================================*/
+                var totalReview = 0;
+                for (var f = 0; f < JSON.parse($(review_1[i]).attr("reviews")).length; f++) {
+                    totalReview += Number(JSON.parse($(review_1[i]).attr("reviews"))[f]["review"]);
+                }
+                /*=============================================
+                Imprimimos el total de las calificaciones para cada producto
+                =============================================*/
+                var rating = Math.round(totalReview / JSON.parse($(review_1[i]).attr("reviews")).length);
+                $(review_3[i]).html(rating);
+                for (var f = 1; f <= 5; f++) {
+                    $(review_2[i]).append("<option value=\"2\">" + f + "</option>");
+                    if (rating == f) {
+                        $(review_2[i]).children('option').val(1);
+                    }
                 }
             }
+            /*=============================================
+            Ejecutar funciones globales con respecto a la galería mixta
+            =============================================*/
             funciones_1.OwlCarouselConfig.fnc();
             funciones_1.CarouselNavigation.fnc();
             funciones_1.SlickConfig.fnc();
             funciones_1.ProductLightbox.fnc();
+            /*=============================================
+            Ejecutar funciones globales con respecto a las ofertas
+            =============================================*/
+            funciones_1.CountDown.fnc();
+            /*=============================================
+            Ejecutar funciones globales con respecto a las reseñas
+            =============================================*/
+            funciones_1.Rating.fnc();
+            /*=============================================
+            Ejecutar funciones globales con respecto al Stock
+            =============================================*/
+            //ProgressBar.fnc()
         }
     };
     HomeHotTodayComponent = __decorate([
