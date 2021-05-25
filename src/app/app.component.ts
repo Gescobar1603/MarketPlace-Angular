@@ -726,7 +726,7 @@ export class AppComponent implements OnInit {
 
 		    $(function() {
 		        backgroundImage();
-		        // owlCarouselConfig();
+		        //owlCarouselConfig();
 		        siteToggleAction();
 		        subMenuToggle();
 		        masonry('.ps-masonry');

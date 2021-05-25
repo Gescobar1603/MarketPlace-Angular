@@ -37,15 +37,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var testing_1 = require("@angular/core/testing");
-var home_hot_today_component_1 = require("../components/home-hot-today.component");
-describe('HomeHotTodayComponent', function () {
+var home_showcase_component_1 = require("../components/home-showcase.component");
+describe('HomeShowcaseComponent', function () {
     var component;
     var fixture;
     beforeEach(function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, testing_1.TestBed.configureTestingModule({
-                        declarations: [home_hot_today_component_1.HomeHotTodayComponent]
+                        declarations: [home_showcase_component_1.HomeShowcaseComponent]
                     })
                         .compileComponents()];
                 case 1:
@@ -55,7 +55,7 @@ describe('HomeHotTodayComponent', function () {
         });
     }); });
     beforeEach(function () {
-        fixture = testing_1.TestBed.createComponent(home_hot_today_component_1.HomeHotTodayComponent);
+        fixture = testing_1.TestBed.createComponent(home_showcase_component_1.HomeShowcaseComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

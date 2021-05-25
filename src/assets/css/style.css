@@ -4367,7 +4367,28 @@
             vertical-align: top;
         }
         
+        .ps-block--deal-hot .ps-block__navigation2 a {
+            position: relative;
+            display: inline-block;
+            margin-right: 15px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            vertical-align: top;
+            left: 777px;
+        }
+        
         .ps-block--deal-hot .ps-block__navigation a i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            font-size: 8px;
+        }
+        
+        .ps-block--deal-hot .ps-block__navigation2 a i {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -7455,7 +7476,7 @@
         
         .widget_best-sale {
             padding: 15px 10px;
-            border: 1px solid #d9d9d9;
+            border: 2px solid #fcb800;
             border-bottom: 5px solid red;
         }
         
@@ -7911,12 +7932,12 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: orange;
         }
         
         .ps-carousel--product-box .owl-dots .owl-dot:hover,
         .ps-carousel--product-box .owl-dots .owl-dot.active {
-            background-color: #ffffff;
+            background-color: #000;
         }
         
         .ps-carousel--product-box .owl-dots .owl-dot:last-child {
@@ -8658,6 +8679,7 @@
         .ps-product--horizontal .ps-product__content {
             width: 100%;
             padding-left: 20px;
+            padding: 4px;
         }
         
         @media (max-width: 1440px) {
@@ -13067,7 +13089,7 @@
         }
         
         .ps-deal-hot .widget_best-sale {
-            border-bottom: 1px solid #d9d9d9;
+            border-bottom: 2px solid #fcb800;
         }
         
         .ps-home-categories .ps-section__header {
@@ -15964,7 +15986,7 @@
             z-index: 1000;
             border-bottom: 1px solid #ccc;
             padding: 10px 0;
-            background-color: #ffffff;
+            background-color: #fcb800;
         }
         
         .header--standard.header--sticky .header__content .menu--product-categories {

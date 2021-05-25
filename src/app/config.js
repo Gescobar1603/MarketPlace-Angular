@@ -14,7 +14,7 @@ EXPORTAMOS LA RUTA PARA TOMAR IMAGENES
 
 export let Api = {
 
-    url: 'https://marketplace-02-default-rtdb.firebaseio.com/'
+    url: 'https://marketplace01-36d03-default-rtdb.firebaseio.com/'
 
 }
 

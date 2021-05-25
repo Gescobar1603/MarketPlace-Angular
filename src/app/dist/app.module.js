@@ -26,6 +26,8 @@ var home_banner_component_1 = require("./components/home-banner.component");
 var home_features_component_1 = require("./components/home-features.component");
 var home_promotion_component_1 = require("./components/home-promotion.component");
 var home_hot_today_component_1 = require("./components/home-hot-today.component");
+var home_top_categorias_component_1 = require("./components/home-top-categorias.component");
+var home_showcase_component_1 = require("./components/home-showcase.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -46,7 +48,9 @@ var AppModule = /** @class */ (function () {
                 home_banner_component_1.HomeBannerComponent,
                 home_features_component_1.HomeFeaturesComponent,
                 home_promotion_component_1.HomePromotionComponent,
-                home_hot_today_component_1.HomeHotTodayComponent
+                home_hot_today_component_1.HomeHotTodayComponent,
+                home_top_categorias_component_1.HomeTopCategoriasComponent,
+                home_showcase_component_1.HomeShowcaseComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,

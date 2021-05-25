@@ -71,7 +71,8 @@ export class HeaderComponent implements OnInit {
          Separar individualmente los titulos
         =============================================================*/
 
-        for(let i = 0; i < tag.length; i++) {
+        for (let i = 0; i < tag.length; i++) {
+
 
             /*==========================================================================
              Tomamos la coleccion de las sub-categoriasfiltrando con la lista de titulos
@@ -80,6 +81,7 @@ export class HeaderComponent implements OnInit {
           this.subCategoriasService.getFilterDataSubCategoria("tag", tag[i]).subscribe(resp => {
 
             arraySubcategorias.push(resp);
+
 
               /*============================================================
                 Hacemos un recorrido por la coleccion general de subcategorias
@@ -112,9 +114,7 @@ export class HeaderComponent implements OnInit {
                     "url": arraySubcategorias[f][g].nombre.replace(/\s+/g, '')
 
                   })
-
               }
-
             }
 
               /*================================================================================

@@ -11,13 +11,17 @@ var core_1 = require("@angular/core");
 var config_1 = require("../config");
 var funciones_1 = require("../funciones");
 var HomeHotTodayComponent = /** @class */ (function () {
-    function HomeHotTodayComponent(productsService) {
+    function HomeHotTodayComponent(productsService, ventasService) {
         this.productsService = productsService;
+        this.ventasService = ventasService;
         this.path = config_1.Path.url;
         this.indexes = [];
         this.renderizado = true;
+        this.renderizadoTopVentas = true;
         this.products = [];
         this.cargando = false;
+        this.topVentas = [];
+        this.topVentasBloque = [];
     }
     HomeHotTodayComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -50,9 +54,66 @@ var HomeHotTodayComponent = /** @class */ (function () {
                 if (hoy < fechaOferta && getProducts[i]["stock"] > 0) {
                     _this.indexes.push(i);
                     _this.cargando = false;
-                    console.log(_this.indexes);
                 }
             }
+        });
+        /*============================================================
+          Tomamos la data de las ventas
+        =============================================================*/
+        var getVentas = [];
+        this.ventasService.getDataVentas().subscribe(function (resp) {
+            /*============================================================
+              Recorremos cada venta para separar los productos y las cantidades
+            =============================================================*/
+            var i;
+            for (i in resp) {
+                getVentas.push({
+                    "producto": resp[i].producto,
+                    "cantidad": resp[i].cantidad
+                });
+            }
+            /*============================================================
+              Ordenamos de mayor a menor el arreglo de objetos
+            =============================================================*/
+            getVentas.sort(function (a, b) {
+                return (b.cantidad - a.cantidad);
+            });
+            /*============================================================
+             Sacamos del arreglo los productos repetidos dejando los de mayor venta
+           =============================================================*/
+            var filtrarVentas = [];
+            getVentas.forEach(function (venta) {
+                if (!filtrarVentas.find(function (resp) { return resp.producto == venta.producto; })) {
+                    var producto = venta.producto, cantidad = venta.cantidad;
+                    filtrarVentas.push({ producto: producto, cantidad: cantidad });
+                }
+            });
+            /*============================================================
+             Filtramos la data de productos buscadno coincidencias con las ventas
+           =============================================================*/
+            var block = 0;
+            filtrarVentas.forEach(function (venta, index) {
+                /*============================================================
+                  Filtramos hasta 20 ventas
+                =============================================================*/
+                if (index < 20) {
+                    block++;
+                    _this.productsService.getFilterData("nombre", venta.producto)
+                        .subscribe(function (resp) {
+                        var i;
+                        for (i in resp) {
+                            _this.topVentas.push(resp[i]);
+                        }
+                    });
+                }
+            });
+            /*============================================================
+              Enviamos el maximo de bloques apra mostrar 4 productos por bloque
+              =============================================================*/
+            for (var i_1 = 0; i_1 < Math.round(block / 5); i_1++) {
+                _this.topVentasBloque.push(i_1);
+            }
+            console.log(_this.topVentasBloque);
         });
     };
     /*============================================================
@@ -156,7 +217,65 @@ var HomeHotTodayComponent = /** @class */ (function () {
             /*=============================================
             Ejecutar funciones globales con respecto al Stock
             =============================================*/
-            //ProgressBar.fnc()
+            funciones_1.ProgressBar.fnc();
+        }
+    };
+    /*============================================================
+      Funcion que nos avisa cuando termina el renderizado de angular
+      =============================================================*/
+    HomeHotTodayComponent.prototype.callBackTopVentas = function (topVentas) {
+        if (this.renderizadoTopVentas) {
+            this.renderizadoTopVentas = false;
+            /*=============================================
+            Capturamos la cantidad de bloques que existe en el DOM
+            =============================================*/
+            var topVentaBloque_1 = $(".topVentaBloque");
+            var top20Array_1 = [];
+            /*=============================================
+            Ejecutamos en SetTimeOut - por cada bloque un segundo de espera
+            =============================================*/
+            setTimeout(function () {
+                console.log(topVentaBloque_1.length);
+                for (var i = 0; i < topVentaBloque_1.length; i++) {
+                    /*=============================================
+                    Agrupamos la cantidad de 4 productos por bloque
+                    =============================================*/
+                    top20Array_1.push(topVentas.slice(i * topVentaBloque_1.length, (i * topVentaBloque_1.length) + topVentaBloque_1.length));
+                    /*=============================================
+                              Hacemos un recorrido por el nuevo array de objetos
+                              =============================================*/
+                    var f = void 0;
+                    for (f in top20Array_1[i]) {
+                        /*=============================================
+                        Definimos si el precio del producto tiene oferta o no
+                        =============================================*/
+                        var precio = void 0;
+                        var tipo = void 0;
+                        var valor = void 0;
+                        var oferta = void 0;
+                        if (top20Array_1[i][f].oferta != "") {
+                            tipo = JSON.parse(top20Array_1[i][f].oferta)[0];
+                            valor = JSON.parse(top20Array_1[i][f].oferta)[1];
+                            if (tipo == "Descuento") {
+                                oferta = (top20Array_1[i][f].precio - (top20Array_1[i][f].precio * valor / 100)).toFixed(2);
+                            }
+                            if (tipo == "Fijo") {
+                                oferta = valor;
+                            }
+                            precio = "<p class=\"ps-product__price sale\">$" + oferta + " <del>$" + top20Array_1[i][f].precio + " </del></p>";
+                        }
+                        else {
+                            precio = "<p class=\"ps-product__price\">$" + top20Array_1[i][f].precio + " </p>";
+                        }
+                        $(topVentaBloque_1[i]).append("\n\n            <div class=\"ps-product--horizontal\">\n\n            <div class=\"ps-product__thumbnail\">\n                <a href=\"product/" + top20Array_1[i][f].nombre.replace(/\s+/g, '') + "\">\n                    <img src=\"assets/img/products/" + top20Array_1[i][f].category + "/" + top20Array_1[i][f].imagen + "\" alt=\"\">\n                </a>\n            </div>\n\n            <div class=\"ps-product__content\">\n\n                <a class=\"ps-product__title\" href=\"product/" + top20Array_1[i][f].nombre.replace(/\s+/g, '') + "\">" + top20Array_1[i][f].nombre.substr(0, 35) + " ...</a>\n\n                <div class=\"ps-product__rating\">\n\n                    <select class=\"ps-rating\" data-read-only=\"true\">\n                                <option value=\"1\">1</option>\n                                <option value=\"1\">2</option>\n                                <option value=\"1\">3</option>\n                                <option value=\"1\">4</option>\n                                <option value=\"2\">5</option>\n                            </select>\n\n                    <span>01</span>\n\n                </div>\n\n                " + precio + "\n\n            </div>\n\n        </div>\n\t\t\t\t\t\t");
+                    }
+                }
+                /*=============================================
+                Modificamos el estilo del plugin OWL Carousel
+                =============================================*/
+                $(".owl-dots").css({ "bottom": "0" });
+                $(".owl-dot").css({ "background": "#ddd" });
+            }, topVentaBloque_1.length * 400);
         }
     };
     HomeHotTodayComponent = __decorate([

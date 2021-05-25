@@ -39,7 +39,6 @@ export class HomePromotionComponent implements OnInit {
               this.preload = false;
               
             }
-      
           })
 
       })

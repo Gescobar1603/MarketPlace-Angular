@@ -59,9 +59,6 @@ export class HomeBannerComponent implements OnInit {
       
           })
     
-
-
-
       })
 
   }
