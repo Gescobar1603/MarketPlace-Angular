@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Path } from '../config';
+import { Search } from '../funciones';
 
 import { CategoriasService } from '../services/categorias.service';
+
 import { SubCategoriasService } from '../services/sub-categorias.service';
 
 declare var jQuery: any;
@@ -48,6 +50,22 @@ export class HeaderComponent implements OnInit {
       }
     })
   }
+
+  	/*=============================================
+	Declaramos función del buscador
+	=============================================*/
+
+	goSearch(search:string){
+
+		if(search.length == 0 && Search.fnc(search) == undefined){
+
+			return;
+		}
+
+		window.open(`search/${Search.fnc(search)}`, '_top')
+
+
+	}
 
   /*============================================================
   Funcion que nos avisa cuando termina el renderizado de angular

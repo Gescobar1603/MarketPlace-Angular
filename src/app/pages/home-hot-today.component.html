@@ -70,7 +70,7 @@ Home Deal Hot Today
 
                                         </figure>
 
-                                        <div class="ps-product__variants galleryMix_3" data-item="4️" data-md="3 " data-sm="3 " data-arrow="false">
+                                        <div class="ps-product__variants galleryMix_3" data-item="4" data-md="3 " data-sm="3 " data-arrow="false">
 
 
                                         </div>
@@ -81,7 +81,10 @@ Home Deal Hot Today
 
                                         <h5>{{products[i].category}}</h5>
 
-                                        <h3 class="ps-product__name ">{{products[i].nombre}}</h3>
+                                        <h3 class="ps-product__name ">
+
+                                            <a href="product/{{products[i].url}}">{{products[i].nombre}}</a>
+                                        </h3>
 
                                         <div class="ps-product__meta ">
 

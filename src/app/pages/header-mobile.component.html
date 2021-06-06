@@ -229,21 +229,19 @@ Header Mobile
     </div>
 
     <!--=====================================
-    Search
-    ======================================-->
+		Search
+		======================================-->
 
-    <div class="ps-search--mobile ">
+    <div class="ps-search--mobile">
 
-        <form class="ps-form--search-mobile " action="index.html " method="get ">
+        <form class="ps-form--search-mobile">
+            <div class="form-group--nest">
 
-            <div class="form-group--nest ">
+                <input (keyup.enter)="goSearch(search.value)" #search class="form-control" type="text" placeholder="Search something...">
 
-                <input class="form-control " type="text " placeholder="Search something... ">
-
-                <button><i class="icon-magnifier "></i></button>
+                <button type="button" (click)="goSearch(search.value)"><i class="icon-magnifier"></i></button>
 
             </div>
-
         </form>
 
     </div>

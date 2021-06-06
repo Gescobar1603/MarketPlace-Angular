@@ -69,7 +69,7 @@ Header
                 <!--=====================================
                 Logo
                 ======================================-->
-                <a class="ps-logo" href="index.html">
+                <a class="ps-logo" routerLink="/">
                     <img src="{{path}}img/template/logo.png" alt="">
                 </a>
                 <!--=====================================
@@ -83,7 +83,7 @@ Header
                     <div class="menu__content">
                         <ul class="menu--dropdown">
                             <li *ngFor="let categoria of categorias; let i = index; let ultimoIndex = last" class="menu-item-has-children has-mega-menu">
-                                <a routerLink="products/{{categoria.nombre}}">
+                                <a routerLink="products/{{categoria.nombre}}" target="_top">
                                     <i class="{{categoria.icono}}"></i>{{categoria.nombre}}
                                 </a>
                                 <div class="mega-menu">
@@ -105,19 +105,15 @@ Header
             Search
             ======================================-->
             <div class="header__content-center">
-                <form class="ps-form--quick-search" action="index.html" method="get">
-                    <div class="form-group--icon">
-                        <i class="icon-chevron-down"></i>
-                        <select class="form-control">
-                            <option value="1">Todo</option>
-                            <option value="1">Smartphone</option>
-                            <option value="1">Computo</option>
-                            <option value="1">Hardware</option>
-                        </select>
-                    </div>
-                    <input class="form-control" type="text" placeholder="¿Que estas buscando?...">
-                    <button>Buscar</button>
+
+                <form class="ps-form--quick-search">
+
+                    <input #search type="text" (keyup.enter)="goSearch(search.value)" class="form-control" placeholder="I'm shopping for...">
+
+                    <button type="button" (click)="goSearch(search.value)">Search</button>
+
                 </form>
+
             </div>
             <div class="header__content-right">
                 <div class="header__actions">

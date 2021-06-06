@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 declare var jQuery:any;
 declare var $:any;
@@ -726,14 +726,14 @@ export class AppComponent implements OnInit {
 
 		    $(function() {
 		        backgroundImage();
-		        //owlCarouselConfig();
+		        // owlCarouselConfig();
 		        siteToggleAction();
 		        subMenuToggle();
 		        masonry('.ps-masonry');
 		        productFilterToggle();
-		        tabs();
-		        //slickConfig();     
-		        //productLightbox();        
+		       	tabs();
+		        // slickConfig();     
+		        // productLightbox();        
 		        // rating();
 		        backToTop();
 		        stickyHeader();
@@ -748,7 +748,7 @@ export class AppComponent implements OnInit {
 		        accordion();
 		        // progressBar();
 		        customScrollbar();
-		        select2Cofig();
+		        // select2Cofig();
 		        // carouselNavigation();
 		        dateTimePicker();
 		        $('[data-toggle="tooltip"]').tooltip();

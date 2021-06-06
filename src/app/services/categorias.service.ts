@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 
 import { Api } from '../config';
 
-import {ApiLexarTec} from '../config'
-
 @Injectable({
   providedIn: 'root'
 })
@@ -12,14 +10,24 @@ import {ApiLexarTec} from '../config'
 export class CategoriasService {
 
   private api: string = Api.url;
-  private api2: string = ApiLexarTec.url;
+
 
   constructor(private http: HttpClient) { }
 
-  getDataCategoria() {
+getDataCategoria() {
 
     return this.http.get(`${this.api}categorias.json`)
 
+  }
+
+  getFilterDataCategoria(orderBy, equalTo) {
+
+    return this.http.get(`${this.api}categorias.json?orderBy="${orderBy}"&equalTo="${equalTo}"&print=pretty`)
+  }
+
+  patchDataCategoria(id: string, value: Object) {
+
+    return this.http.patch(`${this.api}categorias/${id}.json`, value)
   }
 
 
