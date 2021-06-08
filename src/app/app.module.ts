@@ -4,6 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { FormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header.component';
 import { FooterComponent } from './components/footer.component';
@@ -15,7 +17,6 @@ import { ProductsComponent } from './components/products.component';
 import { ProductComponent } from './components/product.component';
 import { BuscadorComponent } from './components/buscador.component';
 import { Error404Component } from './components/error404.component';
-
 import { HomeBannerComponent } from './components/home-banner.component';
 import { HomeFeaturesComponent } from './components/home-features.component';
 import { HomePromotionComponent } from './components/home-promotion.component';
@@ -39,6 +40,9 @@ import { UrlrecurePipe } from './pipes/urlrecure.pipe';
 import { BoughtTogetherComponent } from './components/bought-together.component';
 import { VendorStoreComponent } from './components/vendor-store.component';
 import { ReviewsComponent } from './components/reviews.component';
+import { LoginComponent } from './components/login.component';
+import { RegisterComponent } from './components/register.component';
+
 
 @NgModule({
   declarations: [
@@ -75,12 +79,15 @@ import { ReviewsComponent } from './components/reviews.component';
     UrlrecurePipe,
     BoughtTogetherComponent,
     VendorStoreComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

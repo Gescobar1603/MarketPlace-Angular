@@ -8,7 +8,7 @@ import { Api } from '../config';
 })
 export class VentasService {
 
-  private api:String = Api.url;
+  private api:string = Api.url;
 
   constructor(private http: HttpClient) { }
 

@@ -18,7 +18,7 @@ export class HeaderMobileComponent implements OnInit {
   path: string = Path.url;
   categorias: object = null;
   renderizado: boolean = true;
-  listaCategorias:Array<any> = []
+  listaCategorias:any[] = []
 
   constructor(private categoriasService: CategoriasService, private subCategoriasService: SubCategoriasService) { }
 
@@ -66,7 +66,7 @@ export class HeaderMobileComponent implements OnInit {
 	Declaramos función del buscador
 	=============================================*/
 
-	goSearch(search:String){
+	goSearch(search:string){
 
 		if(search.length == 0 || Search.fnc(search) == undefined){
 

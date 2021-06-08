@@ -15,13 +15,13 @@ import { ProductsService } from '../services/products.service';
 })
 export class ProductRightComponent implements OnInit {
 
-  path:String = Path.url;	
-  products:Array<any> = [];
-  rating:Array<any> = [];
-  reviews:Array<any> = [];
-  price:Array<any> = [];
-  render:Boolean = true;
-  cargando:Boolean = false;
+  path:string = Path.url;	
+  products:any[] = [];
+  rating:any[] = [];
+  reviews:any[] = [];
+  price:any[] = [];
+  render:boolean = true;
+  cargando:boolean = false;
 
   constructor(private activateRoute: ActivatedRoute,
             private productsService: ProductsService) { }
@@ -48,8 +48,8 @@ export class ProductRightComponent implements OnInit {
   }
 
   /*=============================================
-Declaramos función para mostrar los productos recomendados
-=============================================*/	
+  Declaramos función para mostrar los productos recomendados
+  =============================================*/	
 
   productsFnc(response){
 

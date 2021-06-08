@@ -12,8 +12,8 @@ export class VendorStoreComponent implements OnInit {
 
 
 	@Input() childItem:any;
-	path:String = Path.url;
-	store:Array<any>= [];
+	path:string = Path.url;
+	store:any[]= [];
 
   	constructor(private storesService: StoresService) { }
 
@@ -22,8 +22,6 @@ export class VendorStoreComponent implements OnInit {
   		this.storesService.getFilterData("store", this.childItem)
         .subscribe(resp => {
         
-          console.log("store",resp);
-  			
   			for(const i in resp){
 
   				this.store.push(resp[i])

@@ -49,25 +49,25 @@ export class ProductsService {
     
   }
 
-  getFilterData(orderBy:String, equalTo:String){
+  getFilterData(orderBy:string, equalTo:string){
 
 		return this.http.get(`${this.api}products.json?orderBy="${orderBy}"&equalTo="${equalTo}"&print=pretty`);
 
 	}
 
-	getFilterDataWithLimit(orderBy:String, equalTo:String, limitToFirst:Number){
+	getFilterDataWithLimit(orderBy:string, equalTo:string, limitToFirst:number){
 
 		return this.http.get(`${this.api}products.json?orderBy="${orderBy}"&equalTo="${equalTo}"&limitToFirst=${limitToFirst}&print=pretty`);
 
   }
   
-  getSearchData(orderBy:String, param:String){
+  getSearchData(orderBy:string, param:string){
 
 		return this.http.get(`${this.api}products.json?orderBy="${orderBy}"&startAt="${param}"&endAt="${param}\uf8ff"&print=pretty`);
 
   }
   
-  patchData(id:String, value:Object){
+  patchData(id:string, value:object){
 
 		return this.http.patch(`${this.api}products/${id}.json`,value);
 

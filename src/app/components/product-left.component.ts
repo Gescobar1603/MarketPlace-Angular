@@ -23,19 +23,20 @@ import { ProductsService } from '../services/products.service';
 })
 export class ProductLeftComponent implements OnInit {
 
-  path:String = Path.url;	
-  product:Array<any>= [];
-  rating:Array<any> = [];
-  reviews:Array<any> = [];
-  price:Array<any> = [];
-  cargando:Boolean = false;
-  render:Boolean = true;
-  countd:Array<any> = [];
-  gallery:Array<any> = [];
-  renderGallery:Boolean = true;
+  path:string = Path.url;	
+  product:any[]= [];
+  rating:any[] = [];
+  reviews:any[] = [];
+  price:any[] = [];
+  cargando:boolean = false;
+  render:boolean = true;
+  countd:any[] = [];
+  gallery:any[] = [];
+  renderGallery:boolean = true;
   video:string = null;
-  tags:String = null;
-  totalReviews:String;
+  tags:string = null;
+  totalReviews: String;
+  oferta:boolean = false;
 
 
   constructor(private activateRoute: ActivatedRoute,
@@ -95,18 +96,34 @@ Declaramos función para mostrar los productos recomendados
     
     if(this.product[index].oferta != ""){
 
-      const date = JSON.parse(this.product[index].oferta)[2]; 
-       
-      this.countd.push(
+      let today = new Date();
 
-        new Date(
-          parseInt(date.split("-")[0]),
-          parseInt(date.split("-")[1])-1,
-          parseInt(date.split("-")[2])
+      let offerDate = new Date(
+
+        parseInt(JSON.parse(this.product[index].oferta)[2].split("-")[0]),
+        parseInt(JSON.parse(this.product[index].oferta)[2].split("-")[1])-1,
+        parseInt(JSON.parse(this.product[index].oferta)[2].split("-")[2])
+
+      )
+
+      if(today < offerDate){
+
+        this.oferta = true;
+
+        const date = JSON.parse(this.product[index].oferta)[2]; 
+         
+        this.countd.push(
+
+          new Date(
+            parseInt(date.split("-")[0]),
+            parseInt(date.split("-")[1])-1,
+            parseInt(date.split("-")[2])
+
+          )
 
         )
 
-      )
+      }
 
     }
 

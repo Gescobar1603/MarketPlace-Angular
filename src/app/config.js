@@ -18,8 +18,11 @@ export let Api = {
 
 }
 
-export let ApiLexarTec = {
+/*=============================================
+Exportamos el endPoint para el registro de usuarios en Firebase Authentication
+=============================================*/
 
-    url: 'http://localhost:8080/lexartec/reporteinventario/' //localhost:8080
+export let Register = {
 
+    url: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDkjhYlJKmyNSTdnfVBA8eZgXtUJNqbRK8'
 }

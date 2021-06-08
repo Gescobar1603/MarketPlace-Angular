@@ -15,10 +15,10 @@ export class BoughtTogetherComponent implements OnInit {
 
 @Input() childItem:any;
 
-	path:String = Path.url;	
-	products:Array<any> = [];
-	price:Array<any> = [];
-	render:Boolean = true;
+	path:string = Path.url;	
+	products:any[] = [];
+	price:any[] = [];
+	render:boolean = true;
 
   	constructor(private productsService: ProductsService) { }
 
@@ -98,10 +98,7 @@ export class BoughtTogetherComponent implements OnInit {
   			this.render = false;
 
 				let price = $(".endPrice .end-price");
-				
-				console.log(price);
 
-  			
   			let total = 0;
 
   			for(let i = 0; i < price.length; i++){  				
@@ -113,5 +110,4 @@ export class BoughtTogetherComponent implements OnInit {
   			$(".ps-block__total strong").html(`$${total.toFixed(2)}`)
   		}
   	}
-
 }

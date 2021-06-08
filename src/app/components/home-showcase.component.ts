@@ -170,30 +170,50 @@ export class HomeShowcaseComponent implements OnInit {
 								let valor;
 								let oferta;
 								let disccount;
+								let Offerdate;
+								let today = new Date();
+								disccount = "";
 
 								if (arrayProducts[i].oferta != "") {
+
+									Offerdate = new Date(
+
+										parseInt(JSON.parse(arrayProducts[i].oferta)[2].split("-")[0]),
+										parseInt(JSON.parse(arrayProducts[i].oferta)[2].split("-")[1]) - 1,
+										parseInt(JSON.parse(arrayProducts[i].oferta)[2].split("-")[2])
+									)
+		
+
+									if (today < Offerdate) {
 									
-									tipo = JSON.parse(arrayProducts[i].oferta)[0];
-									valor = JSON.parse(arrayProducts[i].oferta)[1];
+										tipo = JSON.parse(arrayProducts[i].oferta)[0];
+										valor = JSON.parse(arrayProducts[i].oferta)[1];
 
-									if(tipo == "Descuento"){
+										if (tipo == "Descuento") {
 
-										oferta = (arrayProducts[i].precio - (arrayProducts[i].precio * valor/100)).toFixed(2)
+											oferta = (arrayProducts[i].precio - (arrayProducts[i].precio * valor / 100)).toFixed(2)
 		
-									}
+										}
 		
-									if(tipo == "Fijo"){
+										if (tipo == "Fijo") {
 		
-										oferta = valor
-										valor = Math.round(oferta * 100 / arrayProducts[i].precio);
+											oferta = valor
+											valor = Math.round(oferta * 100 / arrayProducts[i].precio);
 										
+										}
+
+										disccount = `	<div class="ps-product__badge">-${valor}%</div>`
+
+										price = `<p class="ps-product__price sale">$${oferta} <del>$${arrayProducts[i].precio} </del></p>`;
+								
+									} else {
+										
+										price =  `<p class="ps-product__price">$${arrayProducts[i].precio} </p>`;
+
+
 									}
 
-									disccount = `	<div class="ps-product__badge">-${valor}%</div>`
-
-									price = `<p class="ps-product__price sale">$${oferta} <del>$${arrayProducts[i].precio} </del></p>`;
-								}
-								else {
+									} else {
 									
 									price =  `<p class="ps-product__price">$${arrayProducts[i].precio} </p>`;
 

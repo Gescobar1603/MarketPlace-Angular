@@ -395,25 +395,42 @@ export let DinamicPrice = {
         let price;
         let disccount;
         let arrayPrice = [];
+        let Offerdate;
+        let today = new Date();
 
         if (response.oferta != "") {
 
-            type = JSON.parse(response.oferta)[0];
-            value = JSON.parse(response.oferta)[1];
+            Offerdate = new Date(
 
-            if (type == "Descuento") {
+                parseInt(JSON.parse(response.oferta)[2].split("-")[0]),
+                parseInt(JSON.parse(response.oferta)[2].split("-")[1] - 1),
+                parseInt(JSON.parse(response.oferta)[2].split("-")[2]),
+            )
 
-                offer = (response.precio - (response.precio * value / 100)).toFixed(2)
+            if (today < Offerdate) {
+
+                type = JSON.parse(response.oferta)[0];
+                value = JSON.parse(response.oferta)[1];
+
+                if (type == "Descuento") {
+
+                    offer = (response.precio - (response.precio * value / 100)).toFixed(2)
+                }
+
+                if (type == "Fijo") {
+
+                    offer = value;
+                    value = Math.round(offer * 100 / response.precio)
+                }
+
+                disccount = `<div class="ps-product__badge">-${value}</div>`
+                price = `<p class="ps-product__price sale">$<span class ="end-price">${offer} </span><del>$${response.precio} </del></p>`
+
+            } else {
+
+                price = `<p class="ps-product__price ">$<span class ="end-price">${response.precio}</span></p>`
             }
 
-            if (type == "Fijo") {
-
-                offer = value;
-                value = Math.round(offer * 100 / response.precio)
-            }
-
-            disccount = `<div class="ps-product__badge">-${value}</div>`
-            price = `<p class="ps-product__price sale">$<span class ="end-price">${offer}</span><del>$${response.precio} </del></p>`
         } else {
 
             price = `<p class="ps-product__price sale">$<span class ="end-price">${response.precio}</span></p>`
