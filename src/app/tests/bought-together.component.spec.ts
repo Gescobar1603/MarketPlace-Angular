@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BoughtTogetherComponent } from './bought-together.component';
+import { BoughtTogetherComponent } from '../components/bought-together.component';
 
 describe('BoughtTogetherComponent', () => {
   let component: BoughtTogetherComponent;

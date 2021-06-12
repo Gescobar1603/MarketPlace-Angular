@@ -6,6 +6,8 @@ import { CategoriasService } from '../services/categorias.service';
 
 import { SubCategoriasService } from '../services/sub-categorias.service';
 
+import { UsersService } from '../services/users.service';
+
 declare var jQuery: any;
 declare var $: any;
 
@@ -20,10 +22,64 @@ export class HeaderComponent implements OnInit {
   categorias: object = null;
   subitulosarray: Array<any> = [];
   renderizado: boolean = true;
+  authValidate:boolean = false;
+	picture:string;
+	wishlist:number = 0;
 
-  constructor(private categoriasService: CategoriasService, private subCategoriasService: SubCategoriasService) { }
+  constructor(private categoriasService: CategoriasService, private subCategoriasService: SubCategoriasService,private usersService: UsersService) { }
 
   ngOnInit(): void {
+
+    	/*=============================================
+		Validar si existe usuario autenticado
+		=============================================*/
+		this.usersService.authActivate().then(resp =>{
+
+			if(resp){
+
+				this.authValidate = true;
+
+				this.usersService.getFilterData("idToken", localStorage.getItem("idToken"))
+				.subscribe(resp=>{
+
+					for(const i in resp){
+
+						/*=============================================
+						Mostramos cantidad de productos en su lista de deseos
+						=============================================*/
+
+						if(resp[i].wishlist != undefined){
+
+							this.wishlist = Number(JSON.parse(resp[i].wishlist).length)
+
+						}
+
+						/*=============================================
+						Mostramos foto del usuario
+						=============================================*/
+
+						if(resp[i].picture != undefined){
+
+							if(resp[i].method != "direct"){
+
+								this.picture = `<img src="${resp[i].picture}" class="img-fluid rounded-circle ml-auto">`;
+							
+							}else{
+
+								this.picture = `<img src="assets/img/users/${resp[i].username.toLowerCase()}/${resp[i].picture}" class="img-fluid rounded-circle ml-auto">`;
+							}
+
+						}else{
+
+							this.picture = `<i class="icon-user"></i>`;
+						}
+
+					}
+
+				})
+			}
+
+		})
 
     /*============================================================
     Tomamos la data de las categorias

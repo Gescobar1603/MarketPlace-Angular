@@ -207,20 +207,36 @@ Header Mobile
                 </div>
 
                 <!--=====================================
-                Login and Register
-                ======================================-->
+					Login and Register
+					======================================-->
 
-                <div class="ps-block--user-header ">
+                <div *ngIf="!authValidate" class="ps-block--user-header">
 
-                    <div class="ps-block__left ">
-                        <i class="icon-user "></i>
+                    <div class="ps-block__left">
+                        <i class="icon-user"></i>
                     </div>
-                    <div class="ps-block__right ">
-                        <a href="my-account.html ">Login</a>
-                        <a href="my-account.html ">Register</a>
+                    <div class="ps-block__right">
+                        <a routerLink="login">Login</a>
+                        <a routerLink="register">Register</a>
                     </div>
 
                 </div>
+                <!--=====================================
+                 Go to Account
+                 ======================================-->
+
+                <div *ngIf="authValidate" class="ps-block--user-header">
+                    <div class="ps-block__left text-right">
+                        <a routerLink="account">
+                            <div [innerHTML]="picture" style="width:40px"></div>
+                        </a>
+                    </div>
+                    <div class="ps-block__right">
+                        <a routerLink="account">My Account</a>
+                    </div>
+
+                </div>
+
 
             </div>
 

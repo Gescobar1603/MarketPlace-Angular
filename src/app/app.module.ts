@@ -42,6 +42,7 @@ import { VendorStoreComponent } from './components/vendor-store.component';
 import { ReviewsComponent } from './components/reviews.component';
 import { LoginComponent } from './components/login.component';
 import { RegisterComponent } from './components/register.component';
+import { AccountComponent } from './components/account.component';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { RegisterComponent } from './components/register.component';
     VendorStoreComponent,
     ReviewsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

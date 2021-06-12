@@ -7,6 +7,7 @@ declare var $: any;
 
 import { CategoriasService } from '../services/categorias.service';
 import { SubCategoriasService } from '../services/sub-categorias.service';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-header-mobile',
@@ -18,11 +19,50 @@ export class HeaderMobileComponent implements OnInit {
   path: string = Path.url;
   categorias: object = null;
   renderizado: boolean = true;
-  listaCategorias:any[] = []
+  listaCategorias: any[] = [];
+  authValidate:boolean = false;
+	picture:string;
 
-  constructor(private categoriasService: CategoriasService, private subCategoriasService: SubCategoriasService) { }
+  constructor(private categoriasService: CategoriasService, private subCategoriasService: SubCategoriasService,private usersService: UsersService) { }
 
   ngOnInit(): void {
+
+    		/*=============================================
+		Validar si existe usuario autenticado
+		=============================================*/
+		this.usersService.authActivate().then(resp =>{
+
+			if(resp){
+
+				this.authValidate = true;
+
+				this.usersService.getFilterData("idToken", localStorage.getItem("idToken"))
+				.subscribe(resp=>{
+
+					for(const i in resp){
+
+						if(resp[i].picture != undefined){
+
+							if(resp[i].method != "direct"){
+
+								this.picture = `<img src="${resp[i].picture}" class="img-fluid rounded-circle ml-auto">`;
+							
+							}else{
+
+								this.picture = `<img src="assets/img/users/${resp[i].username.toLowerCase()}/${resp[i].picture}" class="img-fluid rounded-circle ml-auto">`;
+							}
+
+						}else{
+
+							this.picture = `<i class="icon-user"></i>`;
+						}
+
+					}
+
+				})
+			}
+
+		})
 
     /*============================================================
     Tomamos la data de las categorias
