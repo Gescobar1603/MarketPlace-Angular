@@ -110,3 +110,12 @@ export let ChangePassword = {
 
     url: 'https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDkjhYlJKmyNSTdnfVBA8eZgXtUJNqbRK8'
 }
+
+/*=============================================
+Exportamos el endPoint del servidor para administrar archivos
+=============================================*/
+
+export let Server = {
+
+    url: 'http://localhost/MarketPlace-Angular/src/assets/img/index.php?key=AIzaSyDkjhYlJKmyNSTdnfVBA8eZgXtUJNqbRK8'
+}

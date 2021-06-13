@@ -43,6 +43,8 @@ import { ReviewsComponent } from './components/reviews.component';
 import { LoginComponent } from './components/login.component';
 import { RegisterComponent } from './components/register.component';
 import { AccountComponent } from './components/account.component';
+import { AccountBreadcrumbComponent } from './components/account-breadcrumb.component';
+import { AccountProfileComponent } from './components/account-profile.component';
 
 
 @NgModule({
@@ -83,7 +85,9 @@ import { AccountComponent } from './components/account.component';
     ReviewsComponent,
     LoginComponent,
     RegisterComponent,
-    AccountComponent
+    AccountComponent,
+    AccountBreadcrumbComponent,
+    AccountProfileComponent
   ],
   imports: [
     BrowserModule,
