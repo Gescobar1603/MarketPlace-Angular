@@ -118,10 +118,14 @@ Header
             <div class="header__content-right">
                 <div class="header__actions">
                     <!--=====================================
-                    Wishlist
-                    ======================================-->
-                    <a class="header__extra" href="#">
-                        <i class="icon-heart"></i><span><i>0</i></span>
+						Wishlist
+						======================================-->
+
+                    <a class="header__extra" routerLink="account">
+                        <i class="icon-heart"></i>
+                        <span>
+                                <i class="totalWishlist">{{wishlist}}</i>
+                            </span>
                     </a>
                     <!--=====================================
                     Cart

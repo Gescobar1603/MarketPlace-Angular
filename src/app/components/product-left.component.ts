@@ -16,6 +16,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ProductsService } from '../services/products.service';
 
+import { UsersService } from '../services/users.service';
+
 @Component({
   selector: 'app-product-left',
   templateUrl: '../pages/product-left.component.html',
@@ -40,7 +42,8 @@ export class ProductLeftComponent implements OnInit {
 
 
   constructor(private activateRoute: ActivatedRoute,
-            private productsService: ProductsService) { }
+            private productsService: ProductsService,
+            private usersService: UsersService) { }
 
   ngOnInit(): void {
 
@@ -189,5 +192,15 @@ callbackGallery(){
   }
 
 }
+
+
+  /*=============================================
+	Función para agregar productos a la lista de deseos	
+	=============================================*/
+
+	addWishlist(product){		  
+		this.usersService.addWishlist(product);
+	}
+ 
 
 }

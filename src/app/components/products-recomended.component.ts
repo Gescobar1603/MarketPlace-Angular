@@ -9,6 +9,9 @@ import {OwlCarouselConfig,
   DinamicPrice  } from '../funciones';
 
 import { ProductsService } from '../services/products.service';
+
+import { UsersService } from '../services/users.service';
+
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -31,7 +34,7 @@ export class ProductsRecomendedComponent implements OnInit {
 	cargando:boolean = false;
 
   	constructor(private productsService: ProductsService,
-  		        private activateRoute: ActivatedRoute) { }
+  		        private activateRoute: ActivatedRoute, private usersService: UsersService) { }
 
   	ngOnInit(): void {
 
@@ -141,5 +144,14 @@ export class ProductsRecomendedComponent implements OnInit {
   		
   		}
 
-  	}
+	}
+	
+	  	/*=============================================
+	Función para agregar productos a la lista de deseos	
+	=============================================*/
+
+	addWishlist(product){		  
+		this.usersService.addWishlist(product);
+	}
+
 }

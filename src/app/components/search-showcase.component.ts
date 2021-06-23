@@ -10,6 +10,8 @@ import { Rating,
 
 import { ProductsService} from '../services/products.service';
 
+import { UsersService } from '../services/users.service';
+
 import { ActivatedRoute } from '@angular/router';
 
 declare var jQuery:any;
@@ -41,7 +43,8 @@ properties:any[] = ["category","nombre","store","sub_category","tag","url"];
 listProducts:any[] = [];
 
   constructor(private productsService: ProductsService,
-            private activateRoute: ActivatedRoute) { }
+            private activateRoute: ActivatedRoute,
+            private usersService: UsersService) { }
 
  ngOnInit(): void {
 
@@ -368,6 +371,14 @@ Función que nos avisa cuando finaliza el renderizado de Angular
     })
     }
   }
+
+      	/*=============================================
+	Función para agregar productos a la lista de deseos	
+	=============================================*/
+
+	addWishlist(product){		  
+		this.usersService.addWishlist(product);
+	}
 
 }
 

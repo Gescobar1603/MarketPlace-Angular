@@ -14,6 +14,9 @@ declare var jQuery:any;
 declare var $:any;
   
 import { ProductsService } from '../services/products.service';
+
+import { UsersService } from '../services/users.service';
+
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -40,7 +43,8 @@ export class ProductsShowcaseComponent implements OnInit {
   sortValues:any[] = [];
 
   constructor(private productsService: ProductsService,
-    private activateRoute: ActivatedRoute) { }
+    private activateRoute: ActivatedRoute,
+    private usersService: UsersService) { }
 
     ngOnInit(): void {
 
@@ -365,5 +369,13 @@ export class ProductsShowcaseComponent implements OnInit {
        })
        }
      }
+  
+    	/*=============================================
+	Función para agregar productos a la lista de deseos	
+	=============================================*/
+
+	addWishlist(product){		  
+		this.usersService.addWishlist(product);
+	}
  
  }

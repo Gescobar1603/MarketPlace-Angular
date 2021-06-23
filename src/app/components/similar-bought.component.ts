@@ -7,6 +7,7 @@ import { Rating,
 
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../services/products.service';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-similar-bought',
@@ -24,7 +25,8 @@ export class SimilarBoughtComponent implements OnInit {
   	cargando:boolean = false;
 
   	constructor(private activateRoute: ActivatedRoute,
-  		        private productsService: ProductsService) { }
+  		        private productsService: ProductsService,
+							private usersService: UsersService) { }
 
   	ngOnInit(): void {
 
@@ -123,4 +125,13 @@ export class SimilarBoughtComponent implements OnInit {
 
   		}
 	}
+
+	/*=============================================
+	Función para agregar productos a la lista de deseos	
+	=============================================*/
+
+	addWishlist(product){		  
+		this.usersService.addWishlist(product);
+	}
+ 
 }

@@ -272,7 +272,7 @@ export class HomeShowcaseComponent implements OnInit {
 
 											<div class="ps-product__content" data-mh="clothing">
 
-													<a class="ps-product__title" href="product/${arrayProducts[i].url}">${arrayProducts[i].nombre}...</a>
+													<a class="ps-product__title" href="product/${arrayProducts[i].url}">${arrayProducts[i].nombre}</a>
 
 													<div class="ps-product__rating">
 

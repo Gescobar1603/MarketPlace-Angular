@@ -6,6 +6,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
 
+import { DataTablesModule } from 'angular-datatables';
+
+
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header.component';
 import { FooterComponent } from './components/footer.component';
@@ -45,6 +51,7 @@ import { RegisterComponent } from './components/register.component';
 import { AccountComponent } from './components/account.component';
 import { AccountBreadcrumbComponent } from './components/account-breadcrumb.component';
 import { AccountProfileComponent } from './components/account-profile.component';
+import { AccountWhishlistComponent } from './components/account-whishlist.component';
 
 
 @NgModule({
@@ -87,13 +94,18 @@ import { AccountProfileComponent } from './components/account-profile.component'
     RegisterComponent,
     AccountComponent,
     AccountBreadcrumbComponent,
-    AccountProfileComponent
+    AccountProfileComponent,
+    AccountWhishlistComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    DataTablesModule,
+    ConfirmationPopoverModule.forRoot({     
+      confirmButtonType: 'danger',
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
