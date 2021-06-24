@@ -32,6 +32,14 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
+    files: [
+      "src/test.ts",
+      "src/polyfills.ts"
+    ],
+    include: [
+      "src/**/*.spec.ts",
+      "src/**/*.d.ts"
+    ],
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,

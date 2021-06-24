@@ -14,7 +14,7 @@ export class CategoriasService {
 
   constructor(private http: HttpClient) { }
 
-getDataCategoria() {
+  getDataCategoria() {
 
     return this.http.get(`${this.api}categorias.json`)
 
