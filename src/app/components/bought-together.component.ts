@@ -4,6 +4,8 @@ import { DinamicPrice  } from '../funciones';
 
 import { ProductsService } from '../services/products.service';
 
+import {UsersService} from '../services/users.service';
+
 declare var jQuery:any;
 declare var $:any;
 @Component({
@@ -20,7 +22,7 @@ export class BoughtTogetherComponent implements OnInit {
 	price:any[] = [];
 	render:boolean = true;
 
-  	constructor(private productsService: ProductsService) { }
+  	constructor(private productsService: ProductsService, private usersService: UsersService) { }
 
   	ngOnInit(): void {
 
@@ -66,18 +68,31 @@ export class BoughtTogetherComponent implements OnInit {
 	    Filtramos solo 1 producto
 	    =============================================*/
 
+	    let random = Math.floor(Math.random()*getProduct.length); 
+
 	    getProduct.forEach((product, index)=>{
 
-	    	if(index < 1){
+	    	let noIndex = 0;
+
+	    	if(this.childItem["nombre"] == product["nombre"]){
+
+	    		noIndex = index;
+
+	    	}
+
+	    	if(random == noIndex){
+
+	    		random = Math.floor(Math.random()*getProduct.length); 
+
+	    	}
+	    	    	
+	    	if(index != noIndex && index == random){
 
 	    		this.products.push(product);
- 		
-				}
-				
-				
 
-			})
-			
+	    	}
+
+	    })
 
 	    for(const i in this.products){
 
@@ -89,6 +104,7 @@ export class BoughtTogetherComponent implements OnInit {
 	    }
 
   	}
+
 
   	callback(){
 
@@ -109,5 +125,23 @@ export class BoughtTogetherComponent implements OnInit {
 
   			$(".ps-block__total strong").html(`$${total.toFixed(2)}`)
   		}
+		}
+	
+		/*=============================================
+  	Agregar dos productos a la lista de deseos
+    =============================================*/  
+
+  	addWishlist(product1, product2){
+ 
+  		this.usersService.addWishlist(product1);
+
+  		let localUsersService = this.usersService;
+
+  		setTimeout(function(){
+
+  			localUsersService.addWishlist(product2);
+
+  		},1000)
+
   	}
 }

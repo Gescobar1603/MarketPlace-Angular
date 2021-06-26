@@ -1,4 +1,4 @@
-<div class="ps-section--default ps-customer-bought">
+<div *ngIf="!cargando" class="ps-section--default ps-customer-bought">
 
     <div class="ps-section__header">
 
@@ -95,3 +95,12 @@
 
 </div>
 <!--  End Customers who bought -->
+
+<!--=====================================
+Preload
+======================================-->
+<div *ngIf="cargando" class="d-flex justify-content-center">
+
+    <div class="spinner-border text-warning my-5"></div>
+
+</div>

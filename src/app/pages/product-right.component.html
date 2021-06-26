@@ -16,7 +16,7 @@
 
 </aside>
 
-<aside class="widget widget_same-brand">
+<aside *ngIf="!cargando" class="widget widget_same-brand">
 
     <h3>Nuestros Recomendados</h3>
 
@@ -47,7 +47,7 @@
                     </li>
 
                     <li>
-                        <a style="cursor:pointer" (click)="addWishlist(product.url)" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"> 
+                        <a style="cursor:pointer" (click)="addWishlist(product.url)" data-toggle="tooltip" data-placement="top" title="Add to Whishlist">
                             <i class="icon-heart"></i>
                         </a>
                     </li>
@@ -100,3 +100,12 @@
     </div>
 
 </aside>
+
+<!--=====================================
+Preload
+======================================-->
+<div *ngIf="cargando" class="d-flex justify-content-center">
+
+    <div class="spinner-border text-warning my-5"></div>
+
+</div>
