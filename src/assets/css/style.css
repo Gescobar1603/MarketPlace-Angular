@@ -2712,19 +2712,16 @@
         .form-group--number .form-control:-ms-input-placeholder {
             color: #000;
         }
-
+        
         input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button
-        {
-        -webkit-appearance: none;
-        margin: 0;
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
-
-        input[type=number]
-        {
-        -moz-appearance: textfield;
+        
+        input[type=number] {
+            -moz-appearance: textfield;
         }
-
         
         .form-group--select {
             position: relative;
@@ -11626,7 +11623,7 @@
             display: inline-block;
             position: absolute;
             top: -8px;
-            right: 30px;
+            right: 70px;
             width: 16px;
             height: 16px;
             border-left: 1px solid #e1e1e1;
@@ -11645,7 +11642,7 @@
         .ps-cart--mini .ps-cart__content {
             position: absolute;
             min-width: 370px;
-            right: -30px;
+            right: -75px;
             z-index: 30;
             padding-top: 10px;
             -webkit-transform: translate(0 20px);
@@ -16060,7 +16057,7 @@
             top: 0;
             width: 100%;
             left: 0;
-            z-index: 9999;
+            z-index: 1000;
             text-align: center;
             border-bottom: 0 none;
             background-color: #fcb800;

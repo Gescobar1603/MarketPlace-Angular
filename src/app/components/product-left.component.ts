@@ -9,10 +9,10 @@ import { Rating,
   Tabs,
   SlickConfig,
   ProductLightbox,
-  Quantity
+  Quantity, Tooltip
 } from '../funciones';
   
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ProductsService } from '../services/products.service';
 
@@ -43,7 +43,8 @@ export class ProductLeftComponent implements OnInit {
 
   constructor(private activateRoute: ActivatedRoute,
             private productsService: ProductsService,
-            private usersService: UsersService) { }
+            private usersService: UsersService,
+            private router: Router) { }
 
   ngOnInit(): void {
 
@@ -166,19 +167,150 @@ Declaramos función para mostrar los productos recomendados
 
 }
 
-callback(){
+    /*=============================================
+    Función Callback()
+    =============================================*/ 
 
-  if(this.render){
+    callback(){
 
-    this.render = false;
-
-    Rating.fnc();
-    CountDown.fnc();
-    ProgressBar.fnc();
-    Tabs.fnc();
-    Quantity.fnc();
-  }
-}
+      if(this.render){
+  
+        this.render = false;
+  
+        Rating.fnc();
+        CountDown.fnc();
+        ProgressBar.fnc();
+        Tabs.fnc();
+        Quantity.fnc();
+        Tooltip.fnc(); 
+  
+              /*=============================================
+              Agregamos detalles del producto
+              =============================================*/ 
+  
+              if($(".ps-product__variations").attr("specification") != ""){
+  
+                  /*=============================================
+                  Recorremos el array de objetos de detalles
+                  =============================================*/ 
+   
+                  JSON.parse($(".ps-product__variations").attr("specification")).forEach((detail, index)=>{
+  
+                      /*=============================================
+                      Seleccionamos el nombre de propiedad de cada detalle
+                      =============================================*/ 
+                  
+                      let property = Object.keys(detail).toString(); 
+  
+                      /*=============================================
+                      Construimos el HTML que va a aparecer en la vista
+                      =============================================*/ 
+                 
+                      let figure = `<figure class="details${index}">
+                      
+                                      <figcaption>${property}: <strong>Choose an option</strong></figcaption>
+  
+                                      <div class="d-flex">
+                                      
+                                      </div>
+  
+                                  </figure>`
+  
+                      /*=============================================
+                      Pintamos en la vista el HTML de figure
+                      =============================================*/ 
+  
+                      $(".ps-product__variations").append(`
+                          
+                          ${figure}
+  
+                      `)
+  
+                      for(const i in detail[property]){
+  
+                          if(property == "Color"){
+  
+                              $(`.details${index} .d-flex`).append(`
+  
+                                   <div
+                                      class="rounded-circle mr-3 details ${property}"
+                                      detailType="${property}"
+                                      detailValue="${detail[property][i]}"
+                                      data-toggle="tooltip" title="${detail[property][i]}"
+                                      style="background-color:${detail[property][i]}; width:30px; height:30px; cursor:pointer; border:1px solid #bbb"></div>
+  
+                              `)
+  
+                          }else{
+  
+                              $(`.details${index} .d-flex`).append(`
+  
+                                  <div
+                                      class="py-2 px-3 mr-3 details ${property}"
+                                      detailType="${property}"
+                                      detailValue="${detail[property][i]}"
+                                      data-toggle="tooltip" title="${detail[property][i]}"
+                                      style="cursor:pointer; border:1px solid #bbb">${detail[property][i]}</div>
+                              `)
+  
+  
+                          }
+  
+                      }
+  
+                 })
+  
+              }
+  
+              /*=============================================
+              Agregamos detalles del producto al localstorage
+              =============================================*/ 
+  
+              $(document).on("click", ".details", function(){
+  
+                  /*=============================================
+                  Señalar el detalle escogido
+                  =============================================*/ 
+  
+                  let details = $(`.details.${$(this).attr("detailType")}`);
+  
+                  for(let i = 0; i < details.length; i++){
+  
+                      $(details[i]).css({"border":"1px solid #bbb"})
+  
+                  }
+  
+                  $(this).css({"border":"3px solid #bbb"})
+  
+                  /*=============================================
+                  Preguntar si existen detalles en el LocalStorage
+                  =============================================*/ 
+  
+                  if(localStorage.getItem("details")){
+  
+                      let details = JSON.parse(localStorage.getItem("details"));
+  
+                      for(const i in details){
+  
+                          details[i][$(this).attr("detailType")] = $(this).attr("detailValue");
+  
+                          localStorage.setItem("details", JSON.stringify(details))
+                      }
+  
+                  }else{
+  
+                      localStorage.setItem("details", `[{"${$(this).attr("detailType")}":"${$(this).attr("detailValue")}"}]`)
+  
+                  }
+     
+              })
+  
+      }
+    
+      }
+      /*=============================================
+    Función Callback Galería
+    =============================================*/ 
 
 callbackGallery(){
 
@@ -200,7 +332,26 @@ callbackGallery(){
 
 	addWishlist(product){		  
 		this.usersService.addWishlist(product);
+  }
+  
+   /*=============================================
+	Función para agregar productos al carrito de compras
+	=============================================*/
+
+	addShoppingCart(product, unit, details){
+
+		let url = this.router.url;
+
+		let item = {
+		
+			product: product,
+			unit: unit,
+			details: details,
+			url:url
+		}
+
+		this.usersService.addSoppingCart(item);
+
 	}
- 
 
 }

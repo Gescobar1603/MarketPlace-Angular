@@ -7,7 +7,7 @@ import { OwlCarouselConfig,
          DinamicReviews, 
          DinamicPrice   } from '../funciones';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../services/products.service';
 import { UsersService } from '../services/users.service';
 
@@ -27,9 +27,10 @@ export class RelatedProductComponent implements OnInit {
   	cargando:boolean = false;
 
   	constructor(private activateRoute: ActivatedRoute,
-  		        private productsService: ProductsService,
-							private usersService: UsersService) { }
-
+	  		        private productsService: ProductsService,
+								private usersService: UsersService,
+								private router: Router) { }
+	
   	ngOnInit(): void {
 
   		this.cargando = true;
@@ -138,6 +139,26 @@ export class RelatedProductComponent implements OnInit {
 
 	addWishlist(product){		  
 		this.usersService.addWishlist(product);
+	}
+
+	   /*=============================================
+	Función para agregar productos al carrito de compras
+	=============================================*/
+
+	addShoppingCart(product, unit, details){
+
+		let url = this.router.url;
+
+		let item = {
+		
+			product: product,
+			unit: unit,
+			details: details,
+			url:url
+		}
+
+		this.usersService.addSoppingCart(item);
+
 	}
 }
 

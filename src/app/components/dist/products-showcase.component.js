@@ -11,10 +11,11 @@ var core_1 = require("@angular/core");
 var config_1 = require("../config");
 var funciones_1 = require("../funciones");
 var ProductsShowcaseComponent = /** @class */ (function () {
-    function ProductsShowcaseComponent(productsService, activateRoute, usersService) {
+    function ProductsShowcaseComponent(productsService, activateRoute, usersService, router) {
         this.productsService = productsService;
         this.activateRoute = activateRoute;
         this.usersService = usersService;
+        this.router = router;
         this.path = config_1.Path.url;
         this.products = [];
         this.render = true;
@@ -252,10 +253,23 @@ var ProductsShowcaseComponent = /** @class */ (function () {
         }
     };
     /*=============================================
-Función para agregar productos a la lista de deseos
-=============================================*/
+      Función para agregar productos a la lista de deseos
+      =============================================*/
     ProductsShowcaseComponent.prototype.addWishlist = function (product) {
         this.usersService.addWishlist(product);
+    };
+    /*=============================================
+    Función para agregar productos al carrito de compras
+    =============================================*/
+    ProductsShowcaseComponent.prototype.addShoppingCart = function (product, unit, details) {
+        var url = this.router.url;
+        var item = {
+            product: product,
+            unit: unit,
+            details: details,
+            url: url
+        };
+        this.usersService.addSoppingCart(item);
     };
     ProductsShowcaseComponent = __decorate([
         core_1.Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Path } from '../config';
-import { Search } from '../funciones';
+import { Search , DinamicPrice, Sweetalert } from '../funciones';
 
 declare var jQuery: any;
 declare var $: any;
@@ -8,6 +8,9 @@ declare var $: any;
 import { CategoriasService } from '../services/categorias.service';
 import { SubCategoriasService } from '../services/sub-categorias.service';
 import { UsersService } from '../services/users.service';
+import { ProductsService} from '../services/products.service';
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-mobile',
@@ -21,9 +24,14 @@ export class HeaderMobileComponent implements OnInit {
   renderizado: boolean = true;
   listaCategorias: any[] = [];
   authValidate:boolean = false;
-	picture:string;
+  picture: string;
+  shoppingCart:any[] = [];
+	totalShoppingCart:number = 0;
+	renderShopping:boolean = true;
+	subTotal:string = `<h3>Sub Total:<strong class="subTotalHeader"><div class="spinner-border"></div></strong></h3>`;
 
-  constructor(private categoriasService: CategoriasService, private subCategoriasService: SubCategoriasService,private usersService: UsersService) { }
+
+  constructor(private categoriasService: CategoriasService, private subCategoriasService: SubCategoriasService,private usersService: UsersService, private router: Router, private productsService: ProductsService) { }
 
   ngOnInit(): void {
 
@@ -100,9 +108,98 @@ export class HeaderMobileComponent implements OnInit {
       
     })
 
-  }
+		/*=============================================
+		Tomamos la data del Carrito de Compras del LocalStorage
+		=============================================*/
 
-  	/*=============================================
+		if(localStorage.getItem("list")){
+
+			let list = JSON.parse(localStorage.getItem("list"));
+
+			this.totalShoppingCart = list.length;
+
+			/*=============================================
+			Recorremos el arreglo del listado
+			=============================================*/
+			
+			for(const i in list){
+
+				/*=============================================
+				Filtramos los productos del carrito de compras
+				=============================================*/
+
+				this.productsService.getFilterData("url", list[i].product)
+				.subscribe(resp=>{
+					
+					for(const f in resp){
+
+						let details = `<div class="list-details small text-secondary">`
+
+						if(list[i].details.length > 0){
+
+							let specification = JSON.parse(list[i].details);	
+
+							for(const i in specification){
+
+								let property = Object.keys(specification[i]);
+
+								for(const f in property){
+
+									details += `<div>${property[f]}: ${specification[i][property[f]]}</div>`
+								}
+
+							}
+
+						}else{
+
+							/*=============================================
+							Mostrar los detalles por defecto del producto 
+							=============================================*/
+
+							if(resp[f].specification != ""){
+
+								let specification = JSON.parse(resp[f].specification);
+
+								for(const i in specification){
+
+									let property = Object.keys(specification[i]).toString();
+
+									details += `<div>${property}: ${specification[i][property][0]}</div>`
+
+								}
+
+							}
+
+						}
+
+						details += `</div>`;
+
+						this.shoppingCart.push({
+
+							url:resp[f].url,
+							name:resp[f].nombre,
+							category:resp[f].category,
+							image:resp[f].imagen,
+							delivery_time:resp[f].delivery_time,
+							quantity:list[i].unit,
+							price: DinamicPrice.fnc(resp[f])[0],
+							shipping:Number(resp[f].shipping)*Number(list[i].unit),
+							details:details,
+							listDetails:list[i].details
+
+						})
+
+					}
+
+				})
+			
+			}
+
+		}
+
+	}
+
+  /*=============================================
 	Declaramos función del buscador
 	=============================================*/
 
@@ -184,4 +281,82 @@ export class HeaderMobileComponent implements OnInit {
     }
 
   }
+
+	/*=============================================
+	Función que nos avisa cuando finaliza el renderizado de Angular
+	=============================================*/
+	
+	callbackShopping(){
+
+		if(this.renderShopping){
+
+			this.renderShopping = false;
+
+			/*=============================================
+			Sumar valores para el precio total
+			=============================================*/
+
+			let totalProduct = $(".ps-product--cart-mobile");
+
+			setTimeout(function(){
+
+				let price = $(".pShoppingHeaderM .end-price")
+				let quantity = $(".qShoppingHeaderM");
+				let shipping = $(".sShoppingHeaderM");
+
+				let totalPrice = 0;
+
+				for(let i = 0; i < price.length; i++){
+
+					/*=============================================
+					Sumar precio con envío
+					=============================================*/
+
+					let shipping_price = Number($(price[i]).html()) + Number($(shipping[i]).html());
+					
+					totalPrice +=  Number($(quantity[i]).html() * shipping_price)
+		
+				}
+
+				$(".subTotalHeader").html(`$${totalPrice.toFixed(2)}`)
+
+			},totalProduct.length * 500)
+
+		}
+
+	}
+
+	/*=============================================
+	Función para remover productos de la lista de carrito de compras
+	=============================================*/
+
+	removeProduct(product, details){
+		
+		if(localStorage.getItem("list")){
+
+			let shoppingCart = JSON.parse(localStorage.getItem("list"));
+
+			shoppingCart.forEach((list, index)=>{
+
+				if(list.product == product && list.details == details.toString()){
+
+					shoppingCart.splice(index, 1);
+					
+				}
+
+			})
+
+			 /*=============================================
+    		Actualizamos en LocalStorage la lista del carrito de compras
+    		=============================================*/
+
+    		localStorage.setItem("list", JSON.stringify(shoppingCart));
+
+    		Sweetalert.fnc("success", "product removed", this.router.url)
+
+		}
+
+	}
+
+
 }

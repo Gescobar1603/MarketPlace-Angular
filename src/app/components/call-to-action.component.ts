@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Path } from '../config';
 
-import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../services/products.service';
 
+import { UsersService } from '../services/users.service';
+
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-call-to-action',
@@ -17,8 +19,10 @@ export class CallToActionComponent implements OnInit {
   price:any[] = [];	
 
   constructor(private activateRoute: ActivatedRoute,
-            private productsService: ProductsService) { }
-
+              private productsService: ProductsService,
+              private usersService: UsersService,
+              private router: Router) { }
+          
   ngOnInit(): void {
 
     this.productsService.getFilterData("url",  this.activateRoute.snapshot.params["param"])
@@ -75,5 +79,25 @@ export class CallToActionComponent implements OnInit {
     })
     
   }
+
+  		/*=============================================
+	Función para agregar productos al carrito de compras
+	=============================================*/
+
+	addShoppingCart(product, unit, details){
+
+		let url = this.router.url;
+
+		let item = {
+		
+			product: product,
+			unit: unit,
+			details: details,
+			url:url
+		}
+
+		this.usersService.addSoppingCart(item);
+
+	}
 
 }

@@ -395,7 +395,7 @@ export class UsersService {
 
 	}
 
-	  /*=============================================
+    /*=============================================
     Función para agregar productos al carrito de compras
     =============================================*/
 
@@ -519,7 +519,5 @@ export class UsersService {
 			}
 	
 	}
-
-
 
 }

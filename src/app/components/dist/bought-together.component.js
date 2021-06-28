@@ -11,9 +11,10 @@ var core_1 = require("@angular/core");
 var config_1 = require("../config");
 var funciones_1 = require("../funciones");
 var BoughtTogetherComponent = /** @class */ (function () {
-    function BoughtTogetherComponent(productsService, usersService) {
+    function BoughtTogetherComponent(productsService, usersService, router) {
         this.productsService = productsService;
         this.usersService = usersService;
+        this.router = router;
         this.path = config_1.Path.url;
         this.products = [];
         this.price = [];
@@ -88,6 +89,29 @@ Agregar dos productos a la lista de deseos
         var localUsersService = this.usersService;
         setTimeout(function () {
             localUsersService.addWishlist(product2);
+        }, 1000);
+    };
+    /*=============================================
+Función para agregar productos al carrito de compras
+=============================================*/
+    BoughtTogetherComponent.prototype.addShoppingCart = function (product1, unit1, details1, product2, unit2, details2) {
+        var url = this.router.url;
+        var item1 = {
+            product: product1,
+            unit: unit1,
+            details: details1,
+            url: url
+        };
+        this.usersService.addSoppingCart(item1);
+        var localUsersService = this.usersService;
+        setTimeout(function () {
+            var item2 = {
+                product: product2,
+                unit: unit2,
+                details: details2,
+                url: url
+            };
+            localUsersService.addSoppingCart(item2);
         }, 1000);
     };
     __decorate([

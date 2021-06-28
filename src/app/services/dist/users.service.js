@@ -253,8 +253,8 @@ var UsersService = /** @class */ (function () {
         });
     };
     /*=============================================
-  Función para agregar productos al carrito de compras
-  =============================================*/
+    Función para agregar productos al carrito de compras
+    =============================================*/
     UsersService.prototype.addSoppingCart = function (item) {
         /*=============================================
         Filtramos el producto en la data
